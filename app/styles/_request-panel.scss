@@ -1,0 +1,80 @@
+.request-panel {
+  overflow-y: auto;
+  height: 100%;
+  border-right: 1px solid #DDDDDD;
+  flex: 1;
+
+  &__title {
+    text-transform: uppercase;
+    background-color: #F7F7F7;
+    color: #999999;
+    padding: 10px;
+    margin: 0;
+    font-size: 0.70rem;
+    border-bottom: 1px solid #DDDDDD;
+  }
+
+  &__name {
+    font-style: italic;
+    font-weight: 400;
+    text-transform: none;
+    margin-left: 20px;
+    color: #222222;
+  }
+
+  .request-panel__endpoint {
+    display: flex;
+    padding: 20px;
+
+    .resource-panel__method {
+      display: inline-block;
+      padding: 5px;
+      border: 1px solid #DDDDDD;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      border-right: none;
+      width: 90px;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    .resource-panel__url {
+      display: inline-block;
+      padding: 5px;
+      border: 1px solid #DDDDDD;
+      margin: 0;
+      width: 100%;
+      font-size: 0.85rem;
+    }
+
+    .resource-panel__send-button {
+      display: inline-block;
+      padding: 5px;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      width: 90px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-align: center;
+      background-color: #007BFF;
+      border-color: #007BFF;
+      color: #FFFFFF;
+      font-weight: 600;
+
+      &:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+      }
+    }
+  }
+
+  .request-panel__headers {
+    padding: 10px;
+  }
+
+  .request-panel__body {
+    padding: 10px;
+  }
+
+}
+

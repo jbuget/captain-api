@@ -1,0 +1,28 @@
+<h2 class="request-panel__title">Request <span class="request-panel__name">{{resource.fields.Name}}</span></h2>
+
+<section class="request-panel__endpoint">
+  <span class="resource-panel__method resource-panel__method--{{lowercase resource.fields.Method}}">{{resource.fields.Method}}</span>
+
+  {{input class="resource-panel__url" type="text" value=resource.fields.URL enter=(action "sendRequest" resource)}}
+  <button class="resource-panel__send-button" {{action "sendRequest" resource}}>Send</button>
+</section>
+
+<section class="request-panel__headers">
+  <h3>Headers</h3>
+  <div class="code-wrapper">
+    {{ivy-codemirror
+      value=resource.fields.Headers
+      options=(hash mode="yaml" lineNumbers=true)
+      valueUpdated=(action (mut resource.fields.Headers))}}
+  </div>
+</section>
+
+<section class="request-panel__body">
+  <h3>Body</h3>
+  <div class="code-wrapper">
+    {{ivy-codemirror
+      value=resource.fields.Body
+      options=(hash mode="javascript" lineNumbers=true)
+      valueUpdated=(action (mut resource.fields.Body))}}
+  </div>
+</section>

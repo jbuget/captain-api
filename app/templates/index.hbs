@@ -1,0 +1,39 @@
+<header class="app-header">
+  <span class="app-brand">Pix Mate</span>
+  <div class="app-actions">
+    <button>{{fa-icon "cog"}}</button>
+  </div>
+</header>
+
+<div class="app-body">
+  <aside class="resource-explorer">
+
+    <div class="resource-filter">
+      <input class="resource-filter__input" placeholder="Filter">
+    </div>
+
+    <ul class="resource-list">
+      {{#each this.model.records as |record|}}
+        <li class="resource-item" {{action "selectResource" record}}>
+          <span class="resource-item__method resource-item__method--{{lowercase record.fields.Method}}">{{record.fields.Method}}</span>
+          <span class="resource-item__name">{{record.fields.Name}}</span>
+        </li>
+      {{/each}}
+    </ul>
+  </aside>
+
+  <main class="resource-editor">
+
+    {{#if this.selectedResource}}
+
+      <RequestPanel @resource={{this.selectedResource}} @onSendRequest={{action "sendRequest"}}/>
+
+      <ResponsePanel @resource={{this.selectedResource}} @response={{this.response}}/>
+    {{else}}
+      <p>Please, select a resource</p>
+    {{/if}}
+
+  </main>
+
+
+</div>

@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'api-manager',
+    modulePrefix: 'pix-mate',
     environment,
     rootURL: '/',
     locationType: 'auto',

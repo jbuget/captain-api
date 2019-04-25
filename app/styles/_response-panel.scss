@@ -1,0 +1,87 @@
+.response-panel {
+  overflow-y: auto;
+  height: 100%;
+  flex: 1;
+
+  &__title {
+    text-transform: uppercase;
+    background-color: #F7F7F7;
+    color: #999999;
+    padding: 10px;
+    font-size: 0.70rem;
+    margin: 0;
+    border-bottom: 1px solid #DDDDDD;
+  }
+
+  .response-panel__general {
+    display: flex;
+    padding: 20px;
+  }
+
+  &__request {
+    display: inline-block;
+    border: 1px solid #14A2B8;
+    color: #14A2B8;
+    border-radius: 3px;
+    padding: 5px;
+    font-size: 0.85rem;
+    flex-grow: 1;
+
+    &-method {
+      font-weight: 600;
+    }
+
+    &-url {
+    }
+  }
+
+  &__status {
+    display: inline-block;
+    border: 1px solid #DDDDDD;
+    border-radius: 3px;
+    padding: 5px;
+    font-size: 0.85rem;
+    margin-left: 10px;
+
+    &--information {
+      color: #14A2B8;
+      border-color: #14A2B8;
+    }
+
+    &--success {
+      color: #29A645;
+      border-color: #29A645;
+    }
+
+    &--redirection {
+      color: #6D757D;
+      border-color: #6D757D;
+    }
+
+    &--client-error {
+      color: #DC3545;
+      border-color: #DC3545;
+    }
+
+    &--server-error {
+      color: #DC3545;
+      border-color: #DC3545;
+    }
+
+    &-code {
+      font-weight: 600;
+    }
+
+    &-text {
+      text-transform: uppercase;
+    }
+  }
+
+  .response-panel__headers {
+    padding: 10px;
+  }
+
+  .response-panel__body {
+    padding: 10px;
+  }
+}
