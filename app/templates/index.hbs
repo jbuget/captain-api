@@ -1,7 +1,7 @@
 <header class="app-header">
   <span class="app-brand">Pix Mate</span>
   <div class="app-actions">
-    <button>{{fa-icon "cog"}}</button>
+    <button {{action (action "editSettings")}}>{{fa-icon "cog"}}</button>
   </div>
 </header>
 
@@ -35,5 +35,8 @@
 
   </main>
 
+  {{#if isShowingSettingsModal}}
+    <SettingsModal @variables={{this.settings.variables}} @onCancelSettings={{action "cancelSettings"}} @onSaveSettings={{action "saveSettings"}}/>
+  {{/if}}
 
 </div>

@@ -1,4 +1,10 @@
+/* Fonts s*/
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700');
+
+/* Vendors */
+@import "ember-modal-dialog/ember-modal-structure";
+@import "ember-modal-dialog/ember-modal-appearance";
+
 @import "resource-editor";
 @import "resource-explorer";
 
@@ -30,6 +36,7 @@ button {
   border: 1px solid #DDDDDD;
   border-radius: 3px;
   padding: 10px;
+  cursor: pointer;
 }
 
 .app-header {
@@ -41,7 +48,7 @@ button {
   align-items: center;
 
   .app-brand {
-
+    margin-left: 10px;
   }
 
   .app-actions {

@@ -16,15 +16,16 @@
 
   &__name {
     font-style: italic;
-    font-weight: 400;
     text-transform: none;
     margin-left: 20px;
     color: #222222;
+    font-weight: 500;
   }
 
   .request-panel__endpoint {
     display: flex;
     padding: 20px;
+    border-bottom: 1px solid #DDDDDD;
 
     .resource-panel__method {
       display: inline-block;
@@ -50,8 +51,7 @@
     .resource-panel__send-button {
       display: inline-block;
       padding: 5px;
-      border-top-right-radius: 3px;
-      border-bottom-right-radius: 3px;
+      border-radius: 0 3px 3px 0;
       width: 90px;
       font-size: 0.85rem;
       cursor: pointer;

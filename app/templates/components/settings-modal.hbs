@@ -1,0 +1,17 @@
+{{#modal-dialog
+  onClose=this.onCancelSettings
+  targetAttachment="center"
+  translucentOverlay=true
+  clickOutsideToClose=true
+}}
+  <ul>
+    {{#each this.editedVariables as |variable|}}
+      <li>
+        {{variable.key}} {{input type="text" value=variable.value}}
+      </li>
+    {{/each}}
+  </ul>
+
+  <button {{action this.onSaveSettings this.editedVariables}}>Save</button>
+
+{{/modal-dialog}}

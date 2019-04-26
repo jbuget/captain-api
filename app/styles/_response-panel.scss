@@ -16,6 +16,7 @@
   .response-panel__general {
     display: flex;
     padding: 20px;
+    border-bottom: 1px solid #DDDDDD;
   }
 
   &__request {
@@ -73,7 +74,6 @@
     }
 
     &-text {
-      text-transform: uppercase;
     }
   }
 
