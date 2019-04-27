@@ -1,0 +1,38 @@
+<h2 class="panel__title">Result
+  {{#if command.response}}
+    <span class="result-panel__duration">{{command.response.duration}}ms</span>
+  {{/if}}
+</h2>
+
+<div class="panel__body">
+  {{#if command.response}}
+
+    <section class="result-panel__general">
+      <div class="result-panel__request">
+        <span class="result-panel__request-method">{{command.request.method}}</span>
+        <span class="result-panel__request-url">{{command.request.httpRequest.url}}</span>
+      </div>
+      <div class="result-panel__status result-panel__status--{{this.responseStatusType}}">
+        <span class="result-panel__status-code">{{command.response.status}}</span>
+        <span class="result-panel__status-text">{{command.response.statusText}}</span>
+      </div>
+    </section>
+
+    <section class="result-panel__headers">
+      <HttpHeaderList @title="Request headers" @httpHeaders={{command.request.httpRequest.headers}}/>
+      <HttpHeaderList @title="Response headers" @httpHeaders={{command.response.httpResponse.headers}}/>
+    </section>
+
+    <section class="result-panel__body">
+      <h3>Body</h3>
+      <div class="code-wrapper">
+        {{ivy-codemirror
+          value=command.response.bodyRaw
+          options=(hash readOnly=true)}}
+      </div>
+    </section>
+
+  {{else}}
+    <p>No HTTP Exchange</p>
+  {{/if}}
+</div>

@@ -16,8 +16,8 @@ export default Component.extend({
     if (this.filter && this.filter.trim() !== '') {
       return this.resources.filter((resource) => {
         const filterInLowerCase = this.filter.trim().toLowerCase();
-        const resourceNameInLowerCase = resource.fields.Name.toLowerCase();
-        const resourceMethodInLowerCase = resource.fields.Method.toLowerCase();
+        const resourceNameInLowerCase = resource.name.toLowerCase();
+        const resourceMethodInLowerCase = resource.method.toLowerCase();
 
         return resourceNameInLowerCase.includes(filterInLowerCase)
           || resourceMethodInLowerCase.includes(filterInLowerCase);

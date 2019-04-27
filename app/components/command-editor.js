@@ -2,6 +2,6 @@ import Component from '@ember/component';
 
 export default Component.extend({
 
-  classNames: ['panel', 'request-panel'],
+  classNames: ['command-editor'],
 
 });

@@ -1,5 +1,8 @@
+import { A } from '@ember/array';
 import Route from '@ember/routing/route';
 import fetch from 'fetch';
+import Resource from 'pixman/models/Resource';
+import Command from "../models/Command";
 
 export default Route.extend({
 
@@ -13,13 +16,19 @@ export default Route.extend({
         return response.json();
       })
       .then((data) => {
-        return data;
+        return A(data.records.map((record) => Resource.create({
+          name: record.fields.Name,
+          url: record.fields.URL,
+          method: record.fields.Method,
+          headers: record.fields.Headers,
+          body: record.fields.Body
+        })));
       });
   },
 
   setupController(controller, model) {
     this._super(controller, model);
-    this.controllerFor('index').set('selectedResource', model.records[0]);
+    this.controllerFor('index').set('command', Command.create());
   }
 
 });

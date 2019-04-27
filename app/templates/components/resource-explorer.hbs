@@ -8,15 +8,14 @@
 </section>
 
 <section class="section-list">
-
+  <ul class="resource-list">
+    {{#each this.filteredResources as |resource|}}
+      <li class="resource-item">
+        <a class="resource-item__link" href="" {{action onSelectResource resource}}>
+          <span class="resource-item__method resource-item__method--{{lowercase resource.method}}">{{resource.method}}</span>
+          <span class="resource-item__name">{{resource.name}}</span>
+        </a>
+      </li>
+    {{/each}}
+  </ul>
 </section>
-<ul class="resource-list">
-  {{#each this.filteredResources as |resource|}}
-    <li class="resource-item">
-      <a class="resource-item__link" href="" {{action onSelectResource resource}}>
-        <span class="resource-item__method resource-item__method--{{lowercase resource.fields.Method}}">{{resource.fields.Method}}</span>
-        <span class="resource-item__name">{{resource.fields.Name}}</span>
-      </a>
-    </li>
-  {{/each}}
-</ul>

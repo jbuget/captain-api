@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
-import fetch from 'fetch';
-import yaml from 'js-yaml';
 import { inject as service } from '@ember/service';
+import Command from 'pixman/models/Command';
+import Request from 'pixman/models/Request';
 
 export default Controller.extend({
 
@@ -10,46 +10,26 @@ export default Controller.extend({
 
   // props
   selectedResource: null,
-  response: null,
+  command: null,
   isShowingSettingsModal: false,
 
   actions: {
 
     selectResource(resource) {
+      const request = Request.create({
+        url: resource.url,
+        method: resource.method,
+        headers: resource.headers,
+        body: resource.body,
+      });
+      const command = Command.create({ resource, request });
+
       this.set('selectedResource', resource);
-      this.set('response', null);
+      this.set('command', command);
     },
 
-    async sendRequest(resource) {
-      const method = resource.fields.Method;
-
-      const url = this.settings.replaceVariables(resource.fields.URL);
-
-      const headers = yaml.safeLoad(this.settings.replaceVariables(resource.fields.Headers));
-      const body = this.settings.replaceVariables(resource.fields.Body);
-
-      try {
-        const httpResponse = await fetch(url, { method, headers, body });
-
-        const httpResponseBody = await httpResponse.text();
-
-        this.set('response', {
-          method,
-          url: httpResponse.url,
-          statusCode: httpResponse.status,
-          statusText: httpResponse.statusText,
-          headers: yaml.safeDump(httpResponse.headers.map),
-          body: httpResponseBody
-        });
-      } catch (err) {
-
-        this.set('response', {
-          method,
-          url,
-          statusCode: 404,
-          statusText: 'Network request failed',
-        });
-      }
+    executeCommand(command) {
+      return command.execute(this.settings);
     },
 
     editSettings() {

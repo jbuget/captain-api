@@ -3,10 +3,10 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
 
-  classNames: ['panel', 'response-panel'],
+  classNames: ['panel', 'result-panel'],
 
-  responseStatusType: computed('response.statusCode', function() {
-    const statusCode = parseInt(this.response.statusCode);
+  responseStatusType: computed('command.response.status', function() {
+    const statusCode = parseInt(this.command.response.status);
 
     if (statusCode < 200) {
       return 'information';

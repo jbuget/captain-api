@@ -1,9 +1,14 @@
-.response-panel {
-  overflow-y: auto;
+.result-panel {
   height: 100%;
-  flex: 1;
 
-  .response-panel__general {
+  .result-panel__duration {
+    text-transform: none;
+    margin-left: 20px;
+    color: #222222;
+    font-weight: 500;
+  }
+
+  .result-panel__general {
     display: flex;
     padding: 20px;
     border-bottom: 1px solid #DDDDDD;
@@ -67,11 +72,10 @@
     }
   }
 
-  .response-panel__headers {
-    padding: 10px;
+  .result-panel__headers {
   }
 
-  .response-panel__body {
+  .result-panel__body {
     padding: 10px;
   }
 }

@@ -6,21 +6,16 @@
 </header>
 
 <div class="app-body">
-  <aside class="resource-explorer">
-    <ResourceExplorer @resources={{this.model.records}} @onSelectResource={{action "selectResource"}}/>
+  <aside>
+    <ResourceExplorer @resources={{this.model}} @onSelectResource={{action "selectResource"}}/>
   </aside>
 
-  <main class="resource-editor">
-
-    {{#if this.selectedResource}}
-
-      <RequestPanel @resource={{this.selectedResource}} @onSendRequest={{action "sendRequest"}}/>
-
-      <ResponsePanel @resource={{this.selectedResource}} @response={{this.response}}/>
+  <main class="app-main">
+    {{#if this.command}}
+      <CommandEditor @command={{this.command}} @onSendRequest={{action "executeCommand"}}/>
     {{else}}
       <p>Please, select a resource</p>
     {{/if}}
-
   </main>
 
   {{#if isShowingSettingsModal}}

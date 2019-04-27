@@ -7,7 +7,8 @@
 
 @import "./ember-modal-dialog";
 @import "./panel";
-@import "./resource-editor";
+@import "./command-editor";
+@import "./http-header-list";
 @import "./resource-explorer";
 @import "./settings-modal";
 
@@ -121,6 +122,12 @@ input {
   width: 100%;
   height: 100%;
   display: flex;
+}
+
+.app-main {
+  height: 100%;  /*allows both columns to span the full height of the browser window*/
+  width: 100%;
+  overflow: hidden;
 }
 
 .app-footer {
