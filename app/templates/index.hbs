@@ -1,25 +1,13 @@
 <header class="app-header">
-  <span class="app-brand">Pix Mate</span>
+  <span class="app-brand">Pixman</span>
   <div class="app-actions">
-    <button {{action (action "editSettings")}}>{{fa-icon "cog"}}</button>
+    <button class="btn btn--secondary" {{action (action "editSettings")}}>{{fa-icon "cog"}}</button>
   </div>
 </header>
 
 <div class="app-body">
   <aside class="resource-explorer">
-
-    <div class="resource-filter">
-      <input class="resource-filter__input" placeholder="Filter">
-    </div>
-
-    <ul class="resource-list">
-      {{#each this.model.records as |record|}}
-        <li class="resource-item" {{action "selectResource" record}}>
-          <span class="resource-item__method resource-item__method--{{lowercase record.fields.Method}}">{{record.fields.Method}}</span>
-          <span class="resource-item__name">{{record.fields.Name}}</span>
-        </li>
-      {{/each}}
-    </ul>
+    <ResourceExplorer @resources={{this.model.records}} @onSelectResource={{action "selectResource"}}/>
   </aside>
 
   <main class="resource-editor">

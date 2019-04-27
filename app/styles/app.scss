@@ -5,8 +5,11 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
 
-@import "resource-editor";
-@import "resource-explorer";
+@import "./ember-modal-dialog";
+@import "./panel";
+@import "./resource-editor";
+@import "./resource-explorer";
+@import "./settings-modal";
 
 html {
   height: 100%;
@@ -32,11 +35,68 @@ input:focus {
   outline: none;
 }
 
-button {
+table {
+  width: 100%;
+  text-align: left;
+  border-spacing: 0;
+  border-collapse: collapse;
+
+  thead {
+    tr {
+      th {
+
+      }
+    }
+  }
+  tbody {
+    tr {
+      th {
+        font-weight: 400;
+
+      }
+    }
+    tr {
+      td {
+        input{
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+
+.btn {
   border: 1px solid #DDDDDD;
   border-radius: 3px;
-  padding: 10px;
   cursor: pointer;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 5px 20px;
+
+  &--primary {
+    background-color: #007BFF;
+    border-color: #007BFF;
+    color: #FFFFFF;
+
+    &:hover {
+      background-color: #0069d9;
+      border-color: #0062cc;
+    }
+  }
+
+  &--secondary {
+    background-color: #FFFFFF;
+  }
+}
+
+input {
+  padding: 5px;
+  border: 1px solid #DDDDDD;
+  margin: 0;
+  font-size: 0.85rem;
+  color: #555555;
+  box-sizing: border-box;
 }
 
 .app-header {
@@ -48,7 +108,6 @@ button {
   align-items: center;
 
   .app-brand {
-    margin-left: 10px;
   }
 
   .app-actions {

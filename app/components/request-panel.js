@@ -2,7 +2,7 @@ import Component from '@ember/component';
 
 export default Component.extend({
 
-  classNames: ['request-panel'],
+  classNames: ['panel', 'request-panel'],
 
   actions: {
     sendRequest() {

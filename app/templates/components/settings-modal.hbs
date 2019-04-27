@@ -1,17 +1,37 @@
 {{#modal-dialog
-  onClose=this.onCancelSettings
-  targetAttachment="center"
-  translucentOverlay=true
-  clickOutsideToClose=true
+    onClose=this.onCancelSettings
+    targetAttachment="center"
+    translucentOverlay=true
+    clickOutsideToClose=true
+    containerClass="settings-modal"
 }}
-  <ul>
-    {{#each this.editedVariables as |variable|}}
-      <li>
-        {{variable.key}} {{input type="text" value=variable.value}}
-      </li>
-    {{/each}}
-  </ul>
+  <header class="modal-header">
+    <p class="modal-header__title">Settings</p>
+  </header>
 
-  <button {{action this.onSaveSettings this.editedVariables}}>Save</button>
+  <div class="modal-body">
+    <table>
+      <tbody>
+      <tr>
+        <th>Variable</th>
+        <th>Value</th>
+      </tr>
+      {{#each this.editedVariables as |variable|}}
+        <tr>
+          <td>{{input type="text" value=variable.key}}</td>
+          <td>{{input type="text" value=variable.value}}</td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  <footer class="modal-footer">
+    <div class="modal-footer__actions">
+      <button class="btn btn--primary modal-footer__action" {{action this.onSaveSettings this.editedVariables}}>Save
+      </button>
+      <button class="btn btn--secondary modal-footer__action" {{action this.onCancelSettings}}>Cancel</button>
+    </div>
+  </footer>
 
 {{/modal-dialog}}

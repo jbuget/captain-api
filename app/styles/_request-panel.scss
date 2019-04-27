@@ -4,18 +4,7 @@
   border-right: 1px solid #DDDDDD;
   flex: 1;
 
-  &__title {
-    text-transform: uppercase;
-    background-color: #F7F7F7;
-    color: #999999;
-    padding: 10px;
-    margin: 0;
-    font-size: 0.70rem;
-    border-bottom: 1px solid #DDDDDD;
-  }
-
   &__name {
-    font-style: italic;
     text-transform: none;
     margin-left: 20px;
     color: #222222;
@@ -41,30 +30,13 @@
 
     .resource-panel__url {
       display: inline-block;
-      padding: 5px;
-      border: 1px solid #DDDDDD;
-      margin: 0;
       width: 100%;
-      font-size: 0.85rem;
     }
 
     .resource-panel__send-button {
       display: inline-block;
-      padding: 5px;
       border-radius: 0 3px 3px 0;
       width: 90px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      text-align: center;
-      background-color: #007BFF;
-      border-color: #007BFF;
-      color: #FFFFFF;
-      font-weight: 600;
-
-      &:hover {
-        background-color: #0069d9;
-        border-color: #0062cc;
-      }
     }
   }
 

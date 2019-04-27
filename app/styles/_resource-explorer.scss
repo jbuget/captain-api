@@ -1,26 +1,38 @@
 @import './request-panel';
 @import './response-panel';
 
-$resource-explorer-width: 260px;
-
 .resource-explorer {
-  height: 100%;  /*allows both columns to span the full height of the browser window*/
+  height: 100%;
   min-width: 260px;
   display: flex;
   flex-direction: column;
   border-right: 1px solid #DDDDDD;
   overflow-y: auto;
 
-  .resource-filter {
-    display: none;
+  .section-filter {
     border-bottom: 1px solid #DDDDDD;
+    padding: 20px;
 
-    &__input {
-      border-radius: 10px;
-      border:1px solid #DDDDDD;
-      padding: 5px 10px;
-      margin: 20px;
-      width: $resource-explorer-width - 60;
+    .resource-filter {
+      display: flex;
+
+      &__icon {
+        border:1px solid #DDDDDD;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        padding: 4px 5px 3px;
+        color: #999999;
+      }
+
+      &__input {
+        border-radius: 3px;
+        border:1px solid #DDDDDD;
+        padding: 5px 10px;
+        width: 100%;
+        border-left: none;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
     }
   }
 
@@ -31,7 +43,6 @@ $resource-explorer-width: 260px;
     list-style-type: none;
 
     .resource-item {
-      padding: 5px;
       margin: 0;
       font-size: 0.85rem;
       line-height: 1rem;
@@ -40,6 +51,13 @@ $resource-explorer-width: 260px;
       &:hover {
         background-color: #EEEEEE;
         cursor: pointer;
+      }
+
+      .resource-item__link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        padding: 5px;
       }
 
       .resource-item__method {

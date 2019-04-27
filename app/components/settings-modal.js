@@ -9,5 +9,3 @@ export default Component.extend({
   }
 
 });
-
-//     return [...this.variables];

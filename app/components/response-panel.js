@@ -3,7 +3,7 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
 
-  classNames: ['response-panel'],
+  classNames: ['panel', 'response-panel'],
 
   responseStatusType: computed('response.statusCode', function() {
     const statusCode = parseInt(this.response.statusCode);

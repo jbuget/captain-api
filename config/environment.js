@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'pix-mate',
+    modulePrefix: 'pixman',
     environment,
     rootURL: '/',
     locationType: 'auto',
