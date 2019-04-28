@@ -1,4 +1,14 @@
-<h2 class="panel__title">Command <span class="request-panel__name">{{command.resource.name}}</span></h2>
+<div class="panel__header">
+  <div class="panel__header-left-column">
+    <span class="panel__title">Command</span>
+    {{#if command.resource.name}}
+      <span class="request-panel__name">{{command.resource.name}}</span>
+    {{/if}}
+  </div>
+  <div class="panel__header-right-column">
+    <button class="panel__header-action" {{action this.onCancelCommand}}>{{fa-icon "ban"}}</button>
+  </div>
+</div>
 
 <div class="panel__body">
   <section class="request-panel__endpoint">

@@ -43,6 +43,11 @@ export default Controller.extend({
 
     cancelSettings() {
       this.set('isShowingSettingsModal', false);
+    },
+
+    cancelCommand() {
+      this.set('selectedResource', null);
+      this.set('command', Command.create());
     }
   }
 });

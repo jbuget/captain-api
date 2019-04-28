@@ -1,21 +1,30 @@
-<h2 class="panel__title">Resources</h2>
-
-<section class="section-filter">
-  <div class="resource-filter">
-    <span class="resource-filter__icon">{{fa-icon "search"}}</span>
-    {{input class="resource-filter__input" value=filter placeholder=filter}}
+<div class="panel__header">
+  <div class="panel__header-left-column">
+    <span class="panel__title">Resources</span>
   </div>
-</section>
+  <div class="panel__header-right-column">
+    <button class="panel__header-action">{{fa-icon "plus"}}</button>
+  </div>
+</div>
 
-<section class="section-list">
-  <ul class="resource-list">
-    {{#each this.filteredResources as |resource|}}
-      <li class="resource-item">
-        <a class="resource-item__link" href="" {{action onSelectResource resource}}>
-          <span class="resource-item__method resource-item__method--{{lowercase resource.method}}">{{resource.method}}</span>
-          <span class="resource-item__name">{{resource.name}}</span>
-        </a>
-      </li>
-    {{/each}}
-  </ul>
-</section>
+<div class="panel__body">
+  <section class="section-filter">
+    <div class="resource-filter">
+      <span class="resource-filter__icon">{{fa-icon "search"}}</span>
+      {{input class="resource-filter__input" value=filter placeholder=filter}}
+    </div>
+  </section>
+
+  <section class="section-list">
+    <ul class="resource-list">
+      {{#each this.filteredResources as |resource|}}
+        <li class="resource-item">
+          <a class="resource-item__link" href="" {{action onSelectResource resource}}>
+            <span class="resource-item__method resource-item__method--{{lowercase resource.method}}">{{resource.method}}</span>
+            <span class="resource-item__name">{{resource.name}}</span>
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+</div>

@@ -4,12 +4,37 @@
 
   &__title {
     text-transform: uppercase;
-    background-color: #F7F7F7;
     color: #999999;
-    padding: 10px;
     margin: 0;
-    font-size: 0.70rem;
+    display: inline-block;
+    font-weight: 500;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F7F7F7;
     border-bottom: 1px solid #DDDDDD;
+    font-size: 0.75rem;
+
+    &-left-column {
+      padding: 10px;
+    }
+
+    &-right-column {
+      padding: 10px;
+    }
+
+    &-action {
+      border: none;
+      background-color: transparent;
+      color: #777777;
+      padding: 0;
+      font-size: 0.70rem;
+      margin-left: 5px;
+      cursor: pointer;
+    }
   }
 
   &__body {
