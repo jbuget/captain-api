@@ -1,0 +1,21 @@
+{{#modal-dialog}}
+  <header class="modal-header">
+    <p class="modal-header__title">Settings</p>
+  </header>
+
+  <div class="modal-body">
+    <form>
+      <div class="form-field">
+        <label class="form-field__label">Name</label>
+        {{input class="form-field__input" value=resource.name}}
+      </div>
+    </form>
+  </div>
+
+  <footer class="modal-footer">
+    <div class="modal-footer__actions">
+      <button class="btn btn--primary modal-footer__action" {{action onSave resource}}>Save</button>
+      <button class="btn btn--secondary modal-footer__action" {{action onClose}}>Cancel</button>
+    </div>
+  </footer>
+{{/modal-dialog}}

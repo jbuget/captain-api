@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import Resource from 'pixman/models/Resource';
 
 export default Component.extend({
 
@@ -10,9 +11,10 @@ export default Component.extend({
   // Props
   resources: null,
   filter: null,
+  isShowingResourceEditionModal: false,
 
   // CP
-  filteredResources: computed('resources', 'filter', function() {
+  filteredResources: computed('resources.[]', 'filter', function() {
     if (this.filter && this.filter.trim() !== '') {
       return this.resources.filter((resource) => {
         const filterInLowerCase = this.filter.trim().toLowerCase();
@@ -26,4 +28,20 @@ export default Component.extend({
     return this.resources;
   }),
 
+  actions: {
+
+    newResource() {
+      this.set('selectedResource', Resource.create());
+      this.set('isShowingResourceEditionModal', true);
+    },
+
+    async saveResource(resource) {
+      await this.onSaveResource(resource);
+      this.set('isShowingResourceEditionModal', false);
+    },
+
+    cancelResourceEdition() {
+      this.set('isShowingResourceEditionModal', false);
+    },
+  }
 });

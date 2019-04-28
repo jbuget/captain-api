@@ -6,11 +6,15 @@
 </header>
 
 <div class="app-body">
-  <aside>
-    <ResourceExplorer @resources={{this.model}} @onSelectResource={{action "selectResource"}}/>
-  </aside>
-
   <main class="app-main">
+
+    <ResourceExplorer
+        @resources={{model}}
+        @selectedResource={{selectedResource}}
+        @onSelectResource={{action "selectResource"}}
+        @onSaveResource={{action "saveResource"}}
+    />
+
     {{#if this.command}}
       <CommandEditor @command={{this.command}} @onSendRequest={{action "executeCommand"}} @onCancelCommand={{action "cancelCommand"}}/>
     {{else}}
@@ -21,8 +25,8 @@
   {{#if isShowingSettingsModal}}
     <SettingsModal
         @variables={{this.settings.variables}}
-        @onClose={{action "cancelSettings"}}
-        @onSaveSettings={{action "saveSettings"}}
+        @onClose={{action "cancelSettingsEdition"}}
+        @onSave={{action "saveSettings"}}
     />
   {{/if}}
 

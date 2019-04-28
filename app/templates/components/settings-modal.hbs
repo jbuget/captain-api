@@ -1,4 +1,4 @@
-{{#modal-dialog}}
+{{#modal-dialog onClose=onCloseModal}}
   <header class="modal-header">
     <p class="modal-header__title">Settings</p>
   </header>
@@ -22,9 +22,8 @@
 
   <footer class="modal-footer">
     <div class="modal-footer__actions">
-      <button class="btn btn--primary modal-footer__action" {{action this.onSaveSettings this.editedVariables}}>Save
-      </button>
-      <button class="btn btn--secondary modal-footer__action" {{action onClose}}>Cancel</button>
+      <button class="btn btn--primary modal-footer__action" {{action this.onSave this.editedVariables}}>Save</button>
+      <button class="btn btn--secondary modal-footer__action" {{action this.onClose}}>Cancel</button>
     </div>
   </footer>
 {{/modal-dialog}}

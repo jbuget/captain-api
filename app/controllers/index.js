@@ -28,6 +28,10 @@ export default Controller.extend({
       this.set('command', command);
     },
 
+    saveResource(resource) {
+      return this.model.push(resource);
+    },
+
     async executeCommand(command) {
       await command.execute(this.settings);
     },
@@ -41,13 +45,13 @@ export default Controller.extend({
       this.set('isShowingSettingsModal', false);
     },
 
-    cancelSettings() {
+    cancelSettingsEdition() {
       this.set('isShowingSettingsModal', false);
     },
 
     cancelCommand() {
       this.set('selectedResource', null);
       this.set('command', Command.create());
-    }
+    },
   }
 });

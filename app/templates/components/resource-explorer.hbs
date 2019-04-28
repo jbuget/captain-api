@@ -3,7 +3,7 @@
     <span class="panel__title">Resources</span>
   </div>
   <div class="panel__header-right-column">
-    <button class="panel__header-action">{{fa-icon "plus"}}</button>
+    <button class="panel__header-action" {{action "newResource"}}>{{fa-icon "plus"}}</button>
   </div>
 </div>
 
@@ -28,3 +28,12 @@
     </ul>
   </section>
 </div>
+
+{{#if isShowingResourceEditionModal}}
+  <ResourceEditionModal
+    @resource={{selectedResource}}
+    @onClose={{action "cancelResourceEdition"}}
+    @onSave={{action "saveResource"}}
+  />
+{{/if}}
+
