@@ -49,6 +49,7 @@
     "ember-source": "~3.9.0",
     "ember-table": "^2.0.0-beta.7",
     "eslint-plugin-ember": "^5.2.0",
+    "file-saver": "^2.0.1",
     "ivy-codemirror": "^2.1.0",
     "js-yaml": "^3.13.1",
     "loader.js": "^4.7.0",

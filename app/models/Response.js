@@ -1,4 +1,5 @@
 import EmberObject from '@ember/object';
+import { saveAs } from 'file-saver';
 
 export default EmberObject.extend({
 
@@ -26,7 +27,14 @@ export default EmberObject.extend({
       return h;
     }, []);
 
-    const bodyRaw = await this.httpResponse.text();
+    let bodyRaw;
+    if (this.httpResponse.headers.has('content-type') && this.httpResponse.headers.get('content-type').includes('octet-stream')) {
+      const responseBodyBlob = await this.httpResponse.blob();
+      saveAs(responseBodyBlob, `file`);
+      bodyRaw = 'A file should have been downloaded on your computer.';
+    } else {
+      bodyRaw = await this.httpResponse.text();
+    }
 
     this.setProperties({
       url: this.httpResponse.url,

@@ -28,8 +28,8 @@ export default Controller.extend({
       this.set('command', command);
     },
 
-    executeCommand(command) {
-      return command.execute(this.settings);
+    async executeCommand(command) {
+      await command.execute(this.settings);
     },
 
     editSettings() {
