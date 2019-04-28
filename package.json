@@ -22,6 +22,7 @@
     "@ember/optional-features": "^0.6.3",
     "@fortawesome/ember-fontawesome": "^0.1.13",
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "airtable": "^0.5.10",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^5.0.0",
     "ember-auto-import": "^1.3.0",

@@ -1,29 +1,15 @@
 import { A } from '@ember/array';
 import Route from '@ember/routing/route';
-import fetch from 'fetch';
 import Resource from 'pixman/models/Resource';
-import Command from "../models/Command";
+import Command from 'pixman/models/Command';
+import { inject as service } from '@ember/service';
 
 export default Route.extend({
 
+  airtable: service(),
+
   model() {
-    return fetch('https://api.airtable.com/v0/appTWW0SSjzM3bTO7/Resources?sort%5B0%5D%5Bfield%5D=Order', {
-      headers: {
-        'Authorization': 'Bearer keyRR4MG3o7r3WdbA'
-      }
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        return A(data.records.map((record) => Resource.create({
-          name: record.fields.Name,
-          url: record.fields.URL,
-          method: record.fields.Method,
-          headers: record.fields.Headers,
-          body: record.fields.Body
-        })));
-      });
+    return this.airtable.listResources();
   },
 
   setupController(controller, model) {

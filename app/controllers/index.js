@@ -6,6 +6,7 @@ import Request from 'pixman/models/Request';
 export default Controller.extend({
 
   // DI
+  airtable: service(),
   settings: service(),
 
   // props
@@ -28,8 +29,10 @@ export default Controller.extend({
       this.set('command', command);
     },
 
-    saveResource(resource) {
-      return this.model.push(resource);
+    async saveResource(resource) {
+      const recordId = await this.airtable.createResource(resource);
+      const resources = await this.airtable.listResources();
+      this.set('model', resources);
     },
 
     async executeCommand(command) {
