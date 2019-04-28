@@ -19,7 +19,11 @@
   </main>
 
   {{#if isShowingSettingsModal}}
-    <SettingsModal @variables={{this.settings.variables}} @onCancelSettings={{action "cancelSettings"}} @onSaveSettings={{action "saveSettings"}}/>
+    <SettingsModal
+        @variables={{this.settings.variables}}
+        @onClose={{action "cancelSettings"}}
+        @onSaveSettings={{action "saveSettings"}}
+    />
   {{/if}}
 
 </div>

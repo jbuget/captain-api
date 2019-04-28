@@ -1,7 +1,9 @@
-import Component from '@ember/component';
 import { A } from '@ember/array';
+import ModalDialog from 'pixman/components/modal-dialog';
 
-export default Component.extend({
+export default ModalDialog.extend({
+
+  containerClass: "settings-modal",
 
   init() {
     this._super(...arguments);
