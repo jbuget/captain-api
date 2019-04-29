@@ -6,7 +6,7 @@
     {{/if}}
   </div>
   <div class="panel__header-right-column">
-    <button class="panel__header-action" title="Save resource">{{fa-icon "save"}}</button>
+    <button class="panel__header-action" title="Save resource" {{action this.onSaveRequest command}}>{{fa-icon "save"}}</button>
     <button class="panel__header-action" title="Clear request" {{action this.onCancelCommand}}>{{fa-icon "ban"}}</button>
   </div>
 </div>

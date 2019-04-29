@@ -12,11 +12,14 @@
         @resources={{model}}
         @selectedResource={{selectedResource}}
         @onSelectResource={{action "selectResource"}}
-        @onSaveResource={{action "saveResource"}}
-    />
+        @onSaveResource={{action "createResource"}}/>
 
     {{#if this.command}}
-      <CommandEditor @command={{this.command}} @onSendRequest={{action "executeCommand"}} @onCancelCommand={{action "cancelCommand"}}/>
+      <CommandEditor
+          @command={{this.command}}
+          @onSendRequest={{action "executeCommand"}}
+          @onCancelCommand={{action "cancelCommand"}}
+          @onSaveRequest={{action "updateResourceRequest"}}/>
     {{else}}
       <p>Please, select a resource</p>
     {{/if}}
@@ -26,8 +29,7 @@
     <SettingsModal
         @variables={{this.settings.variables}}
         @onClose={{action "cancelSettingsEdition"}}
-        @onSave={{action "saveSettings"}}
-    />
+        @onSave={{action "saveSettings"}}/>
   {{/if}}
 
 </div>

@@ -16,7 +16,7 @@ export default Service.extend({
   async listResources() {
     const data = await this.base('Resources').select({ view: 'Grid view' }).all();
     return A(data.map((record) => Resource.create({
-      id: record.fields.recordId,
+      id: record.id,
       name: record.fields.Name,
       url: record.fields.URL,
       method: record.fields.Method,
@@ -27,9 +27,19 @@ export default Service.extend({
 
   createResource(resource) {
     return this.base('Resources').create({
-      "Name": resource.name,
-      "Order": 9999
+      'Name': resource.name,
+      'Order': 9999
     });
-  }
+  },
+
+  updateResource(resource) {
+    return this.base('Resources').update(resource.id, {
+      'Method': resource.method,
+      'URL': resource.url,
+      'Name': resource.name || resource.url,
+      'Headers': resource.headers,
+      'Body': resource.body
+    });
+  },
 
 });

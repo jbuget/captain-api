@@ -29,8 +29,20 @@ export default Controller.extend({
       this.set('command', command);
     },
 
-    async saveResource(resource) {
+    async createResource(resource) {
       const recordId = await this.airtable.createResource(resource);
+      const resources = await this.airtable.listResources();
+      this.set('model', resources);
+    },
+
+    async updateResourceRequest(command) {
+      command.resource.setProperties({
+        method: command.request.method,
+        url: command.request.url,
+        headers: command.request.headers,
+        body: command.request.body,
+      });
+      const recordId = await this.airtable.updateResource(command.resource);
       const resources = await this.airtable.listResources();
       this.set('model', resources);
     },
