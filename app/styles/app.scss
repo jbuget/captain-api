@@ -1,9 +1,15 @@
+.ember-power-select-trigger {
+  width: 100px;
+  border: 1px solid #DDDDDD;
+}
+
 /* Fonts s*/
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700');
 
 /* Vendors */
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+@import "ember-power-select";
 
 @import "./ember-modal-dialog";
 @import "./panel";

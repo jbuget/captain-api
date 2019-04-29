@@ -11,10 +11,13 @@ export default Component.extend({
   httpHeaders: null,
 
   headers: computed('httpHeaders', function() {
-    return Object.keys(this.httpHeaders.map).reduce((h, key) => {
-      h.push({ name: key, value: this.httpHeaders.map[key]});
-      return h;
-    }, []);
+    if (this.httpHeaders) {
+      return Object.keys(this.httpHeaders.map).reduce((h, key) => {
+        h.push({ name: key, value: this.httpHeaders.map[key]});
+        return h;
+      }, []);
+    }
+    return null;
   }),
 
 });

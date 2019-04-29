@@ -1,6 +1,4 @@
-import { A } from '@ember/array';
 import Route from '@ember/routing/route';
-import Resource from 'pixman/models/Resource';
 import Command from 'pixman/models/Command';
 import { inject as service } from '@ember/service';
 
