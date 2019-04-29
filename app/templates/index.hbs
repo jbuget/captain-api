@@ -12,7 +12,8 @@
         @resources={{model}}
         @selectedResource={{selectedResource}}
         @onSelectResource={{action "selectResource"}}
-        @onSaveResource={{action "createResource"}}/>
+        @onSaveResource={{action "createResource"}}
+        @onImportResources={{action "importResources"}}/>
 
     {{#if this.command}}
       <CommandEditor

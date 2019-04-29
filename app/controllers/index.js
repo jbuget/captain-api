@@ -16,6 +16,12 @@ export default Controller.extend({
 
   actions: {
 
+    async importResources(importedResources) {
+      await this.airtable.importResources(importedResources);
+      const resources = await this.airtable.listResources();
+      this.set('model', resources);
+    },
+
     selectResource(resource) {
       const request = Request.create({
         url: resource.url,

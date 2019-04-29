@@ -33,6 +33,18 @@ export default Service.extend({
     });
   },
 
+  importResources(resources) {
+    const recordsData = resources.map((resource) => {
+      return {
+        'Name': resource.name,
+        'Method': resource.method,
+        'URL': resource.url,
+        'Order': 9999
+      }
+    });
+    return Promise.all(recordsData.map((record) => this.base('Resources').create(record)));
+  },
+
   updateResource(resource) {
     return this.base('Resources').update(resource.id, {
       'Method': resource.method,

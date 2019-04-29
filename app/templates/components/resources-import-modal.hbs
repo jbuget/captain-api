@@ -1,0 +1,20 @@
+{{#modal-dialog}}
+  <header class="modal-header">
+    <p class="modal-header__title">Import</p>
+  </header>
+
+  <div class="modal-body">
+    <p>Import a resources collection.</p>
+    <div>
+      <label>Import from link</label>
+      {{input value=importUrl placeholder="Enter a URL and press Import"}}
+    </div>
+  </div>
+
+  <footer class="modal-footer">
+    <div class="modal-footer__actions">
+      <button class="btn btn--primary modal-footer__action" {{action "importResources"}}>Import</button>
+      <button class="btn btn--secondary modal-footer__action" {{action onClose}}>Cancel</button>
+    </div>
+  </footer>
+{{/modal-dialog}}

@@ -11,6 +11,7 @@ export default Component.extend({
   // Props
   resources: null,
   filter: null,
+  isShowingResourcesImportModal: false,
   isShowingResourceEditionModal: false,
 
   // CP
@@ -29,6 +30,19 @@ export default Component.extend({
   }),
 
   actions: {
+
+    openResourcesImportModal() {
+      this.set('isShowingResourcesImportModal', true);
+    },
+
+    async importResources(resources) {
+      await this.onImportResources(resources);
+      this.set('isShowingResourcesImportModal', false);
+    },
+
+    closeResourcesImportModal() {
+      this.set('isShowingResourcesImportModal', false);
+    },
 
     newResource() {
       this.set('selectedResource', Resource.create());
