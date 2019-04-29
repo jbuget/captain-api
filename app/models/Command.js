@@ -20,7 +20,7 @@ export default EmberObject.extend({
     } catch (err) {
       const endTime = moment();
       const duration = endTime.diff(startTime);
-      this.set('response', Response.create({ httpResponse: new HttpResponse(), duration }));
+      this.set('response', Response.create({ httpResponse: HttpResponse.error(), duration }));
     }
   }
 });

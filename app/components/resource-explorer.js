@@ -14,7 +14,7 @@ export default Component.extend({
   isShowingResourceEditionModal: false,
 
   // CP
-  filteredResources: computed('resources.[]', 'filter', function() {
+  filteredResources: computed('resources', 'filter', function() {
     if (this.filter && this.filter.trim() !== '') {
       return this.resources.filter((resource) => {
         const filterInLowerCase = this.filter.trim().toLowerCase();

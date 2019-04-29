@@ -22,6 +22,15 @@ export default EmberObject.extend({
       throw new Error('Property "duration" is required.');
     }
 
+    const status = {
+      code: this.httpResponse.status,
+      text: this.httpResponse.statusText
+    };
+    if (!this.httpResponse.ok && this.httpResponse.status === 0) {
+      status.code = 404;
+      status.text = 'Resource not found';
+    }
+
     const headers = Object.keys(this.httpResponse.headers.map).reduce((h, key) => {
       h.push({ name: key, value: this.httpResponse.headers.map[key]});
       return h;
@@ -38,8 +47,8 @@ export default EmberObject.extend({
 
     this.setProperties({
       url: this.httpResponse.url,
-      status: this.httpResponse.status,
-      statusText: this.httpResponse.statusText,
+      status: status.code,
+      statusText: status.text,
       headers,
       bodyRaw
     });

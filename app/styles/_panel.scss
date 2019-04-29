@@ -40,7 +40,9 @@
   &__body {
     height: 100%;
     display: block;
+    overflow: auto;
     overflow-y: auto;
+    overflow-x: hidden;
     box-sizing: border-box;
   }
 }

@@ -28,6 +28,7 @@ export default Service.extend({
   createResource(resource) {
     return this.base('Resources').create({
       'Name': resource.name,
+      'Method': 'GET',
       'Order': 9999
     });
   },

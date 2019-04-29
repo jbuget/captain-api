@@ -21,11 +21,14 @@ export default Service.extend({
   },
 
   replaceVariables(expression) {
-    return expression.replace(/{{\s*[\w.]+\s*}}/g, (match) => {
-      let key = match.replace(/{{\s*/g, '');
-      key = key.replace(/\s*}}/g, '');
-      return this.getVariable(key).value;
-    });
+    if (expression) {
+      return expression.replace(/{{\s*[\w.]+\s*}}/g, (match) => {
+        let key = match.replace(/{{\s*/g, '');
+        key = key.replace(/\s*}}/g, '');
+        return this.getVariable(key).value;
+      });
+    }
+    return null;
   }
 
 });

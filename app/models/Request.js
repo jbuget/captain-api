@@ -15,10 +15,16 @@ export default EmberObject.extend({
 
   send(settings) {
     const headers = new HttpHeaders();
-    this.headers.split('\n').forEach((header) => {
-      const [name, value] = header.split(':');
-      headers.append(name.trim(), settings.replaceVariables(value.trim()));
-    });
+    if (this.headers) {
+      this.headers.split('\n').forEach((header) => {
+        if (header) {
+          const [name, value] = header.split(':');
+          if (name && value) {
+            headers.append(name.trim(), settings.replaceVariables(value.trim()));
+          }
+        }
+      });
+    }
 
     const url = settings.replaceVariables(this.url);
     const method = this.method;
@@ -27,7 +33,8 @@ export default EmberObject.extend({
     const httpRequest = new HttpRequest(url, {
       method,
       headers: headers,
-      body
+      body,
+      mode: 'no-cors'
     });
 
     this.set('httpRequest', httpRequest);
