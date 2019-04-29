@@ -16,10 +16,13 @@ export default Controller.extend({
 
   actions: {
 
+    async reloadResources() {
+      await this._reloadResources();
+    },
+
     async importResources(importedResources) {
       await this.airtable.importResources(importedResources);
-      const resources = await this.airtable.listResources();
-      this.set('model', resources);
+      await this._reloadResources();
     },
 
     selectResource(resource) {
@@ -37,8 +40,7 @@ export default Controller.extend({
 
     async createResource(resource) {
       const recordId = await this.airtable.createResource(resource);
-      const resources = await this.airtable.listResources();
-      this.set('model', resources);
+      await this._reloadResources();
     },
 
     async updateResourceRequest(command) {
@@ -49,16 +51,11 @@ export default Controller.extend({
         body: command.request.body,
       });
       const recordId = await this.airtable.updateResource(command.resource);
-      const resources = await this.airtable.listResources();
-      this.set('model', resources);
+      await this._reloadResources();
     },
 
     async executeCommand(command) {
       await command.execute(this.settings);
-    },
-
-    editSettings() {
-      this.set('isShowingSettingsModal', true);
     },
 
     saveSettings(editedVariables) {
@@ -66,13 +63,15 @@ export default Controller.extend({
       this.set('isShowingSettingsModal', false);
     },
 
-    cancelSettingsEdition() {
-      this.set('isShowingSettingsModal', false);
-    },
-
     cancelCommand() {
       this.set('selectedResource', null);
       this.set('command', Command.create());
     },
+  },
+
+  async _reloadResources() {
+    const resources = await this.airtable.listResources();
+    this.set('model', resources);
+
   }
 });

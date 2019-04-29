@@ -31,16 +31,8 @@ export default Component.extend({
 
   actions: {
 
-    openResourcesImportModal() {
-      this.set('isShowingResourcesImportModal', true);
-    },
-
     async importResources(resources) {
       await this.onImportResources(resources);
-      this.set('isShowingResourcesImportModal', false);
-    },
-
-    closeResourcesImportModal() {
       this.set('isShowingResourcesImportModal', false);
     },
 
@@ -51,10 +43,6 @@ export default Component.extend({
 
     async saveResource(resource) {
       await this.onSaveResource(resource);
-      this.set('isShowingResourceEditionModal', false);
-    },
-
-    cancelResourceEdition() {
       this.set('isShowingResourceEditionModal', false);
     },
   }

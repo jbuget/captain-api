@@ -3,8 +3,9 @@
     <span class="panel__title">Resources</span>
   </div>
   <div class="panel__header-right-column">
-    <button class="panel__header-action" title="Import resources" {{action "openResourcesImportModal"}}>{{fa-icon "file-import"}}</button>
     <button class="panel__header-action" title="Add new resource" {{action "newResource"}}>{{fa-icon "plus"}}</button>
+    <button class="panel__header-action" title="Import resources" {{action (mut isShowingResourcesImportModal) true}}>{{fa-icon "file-import"}}</button>
+    <button class="panel__header-action" title="Reload resources" {{action (action onReloadResources)}}>{{fa-icon "sync"}}</button>
   </div>
 </div>
 
@@ -32,14 +33,14 @@
 
 {{#if isShowingResourcesImportModal}}
   <ResourcesImportModal
-    @onClose={{action "closeResourcesImportModal"}}
+    @onClose={{action (mut isShowingResourcesImportModal) false}}
     @onImport={{action "importResources"}}/>
 {{/if}}
 
 {{#if isShowingResourceEditionModal}}
   <ResourceEditionModal
     @resource={{selectedResource}}
-    @onClose={{action "cancelResourceEdition"}}
+    @onClose={{action (mut isShowingResourceEditionModal) false}}
     @onSave={{action "saveResource"}}/>
 {{/if}}
 
