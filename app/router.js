@@ -7,6 +7,8 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('connection');
+  this.route('disconnection');
 });
 
 export default Router;

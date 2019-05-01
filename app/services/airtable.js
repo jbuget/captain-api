@@ -2,15 +2,33 @@ import Service from '@ember/service';
 import { A } from '@ember/array';
 import Airtable from 'airtable';
 import Resource from 'pixman/models/Resource';
+import { computed } from '@ember/object';
 
 export default Service.extend({
 
+  apiKey: null,
+  baseId: null,
   base: null,
 
-  init() {
-    this._super(...arguments);
-    const base = new Airtable({ apiKey: 'keyRR4MG3o7r3WdbA' }).base('appTWW0SSjzM3bTO7');
-    this.set('base', base);
+  isConnected: computed('base', function() {
+    return !!this.base;
+  }),
+
+  async connect(apiKey, baseId) {
+    try {
+      const base = new Airtable({ apiKey }).base(baseId);
+      await base.table('Access logs').create({
+        'Date time': Date.now(),
+        'User agent': window.navigator.userAgent
+      });
+      this.set('base', base);
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  disconnect() {
+    this.set('base', null);
   },
 
   async listResources() {

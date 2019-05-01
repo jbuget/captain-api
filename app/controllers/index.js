@@ -16,6 +16,10 @@ export default Controller.extend({
 
   actions: {
 
+    disconnect() {
+
+    },
+
     async reloadResources() {
       await this._reloadResources();
     },

@@ -6,6 +6,12 @@ export default Route.extend({
 
   airtable: service(),
 
+  beforeModel() {
+    if (!this.airtable.isConnected) {
+      return this.transitionTo('connection');
+    }
+  },
+
   model() {
     return this.airtable.listResources();
   },

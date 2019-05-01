@@ -1,0 +1,19 @@
+<form {{action "connect" on="submit"}}>
+  <h1>Connection</h1>
+
+  {{#if error}}
+    <p style="color: red;">{{error}}</p>
+  {{/if}}
+
+  <div class="form-field">
+    <label class="form-label" for="airtableApiKey">Airtable API key</label>
+    {{input name="airtableApiKey" value=airtableApiKey}}
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="airtableBaseId">Airtable Base id</label>
+    {{input name="airtableBaseId" value=airtableBaseId}}
+  </div>
+
+  <button type="submit">Connect</button>
+</form>

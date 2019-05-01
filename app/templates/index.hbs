@@ -2,6 +2,7 @@
   <span class="app-brand">Pixman</span>
   <div class="app-actions">
     <button class="btn btn--secondary" {{action (mut isShowingSettingsModal) true}}>{{fa-icon "cog"}}</button>
+    {{#link-to "disconnection"}}{{fa-icon "power-off"}}{{/link-to}}
   </div>
 </header>
 
@@ -25,21 +26,19 @@
     {{else}}
       <p>Please, select a resource</p>
     {{/if}}
-  </main>
 
-  {{#if isShowingSettingsModal}}
-    <SettingsModal
-        @variables={{this.settings.variables}}
-        @onClose={{action (mut isShowingSettingsModal) false}}
-        @onSave={{action "saveSettings"}}/>
-  {{/if}}
+    {{#if isShowingSettingsModal}}
+      <SettingsModal
+          @variables={{this.settings.variables}}
+          @onClose={{action (mut isShowingSettingsModal) false}}
+          @onSave={{action "saveSettings"}}/>
+    {{/if}}
+
+  </main>
 
 </div>
 
 <footer class="app-footer">
-  <div>
-    <span>Made with ❤ by Pix from 🇫🇷</span>
-  </div>
   <div>
     <a href="https://github.com/1024pix/pixman">{{fa-icon "github" prefix="fab"}}</a>
   </div>
