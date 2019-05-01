@@ -1,8 +1,8 @@
 <header class="app-header">
   <span class="app-brand">Pixman</span>
   <div class="app-actions">
-    <button class="btn btn--secondary" {{action (mut isShowingSettingsModal) true}}>{{fa-icon "cog"}}</button>
-    {{#link-to "disconnection"}}{{fa-icon "power-off"}}{{/link-to}}
+    <button class="app-action" {{action (mut isShowingSettingsModal) true}} title="Configure environment variables">{{fa-icon "cog"}}</button>
+    {{#link-to "disconnection" class="app-action" title="Disconnect"}}{{fa-icon "power-off"}}{{/link-to}}
   </div>
 </header>
 

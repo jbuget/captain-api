@@ -11,10 +11,12 @@
 @import "ember-modal-dialog/ember-modal-appearance";
 @import "ember-power-select";
 
-@import "./ember-modal-dialog";
-@import "./panel";
 @import "./command-editor";
+@import "./connection";
+@import "./ember-modal-dialog";
+@import "./form";
 @import "./http-header-list";
+@import "./panel";
 @import "./resource-explorer";
 @import "./settings-modal";
 
@@ -120,6 +122,25 @@ input {
   }
 
   .app-actions {
+  }
+
+  .app-action {
+    background-color: #ECECEC;
+    color: #808080!important;
+    box-sizing: border-box;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 0.80rem;
+    margin-left: 5px;
+    cursor: pointer;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: #D8D8D8;
+    }
   }
 }
 

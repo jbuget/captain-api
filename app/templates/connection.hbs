@@ -1,19 +1,29 @@
-<form {{action "connect" on="submit"}}>
-  <h1>Connection</h1>
+<form {{action "connect" on="submit"}} class="form connection-form">
 
-  {{#if error}}
-    <p style="color: red;">{{error}}</p>
-  {{/if}}
+  <header class="form-header">
+    <h1 class="form-title">Connection</h1>
+  </header>
 
-  <div class="form-field">
-    <label class="form-label" for="airtableApiKey">Airtable API key</label>
-    {{input name="airtableApiKey" value=airtableApiKey}}
+  <div class="form-body">
+    {{#if error}}
+      <div class="form-messages">
+        <p class="form-message form-message--error">{{error}}</p>
+      </div>
+    {{/if}}
+
+    <div class="form-field">
+      <label class="form-field__label" for="airtableApiKey">Airtable API key</label>
+      {{input class="form-field__input" name="airtableApiKey" value=airtableApiKey autofocus=true placeholder="ex: keyA1b2c3d4E5f6g7"}}
+    </div>
+
+    <div class="form-field">
+      <label class="form-field__label" for="airtableBaseId">Airtable Base id</label>
+      {{input class="form-field__input" name="airtableBaseId" value=airtableBaseId placeholder="ex: appA1b2c3d4E5f6g7"}}
+    </div>
   </div>
 
-  <div class="form-field">
-    <label class="form-label" for="airtableBaseId">Airtable Base id</label>
-    {{input name="airtableBaseId" value=airtableBaseId}}
-  </div>
+  <footer class="form-foooter">
+    <button class="form-action form-action--primary" type="submit">Connect</button>
+  </footer>
 
-  <button type="submit">Connect</button>
 </form>

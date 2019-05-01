@@ -23,7 +23,7 @@
       {{method}}
     {{/power-select}}
 
-    {{input class="resource-panel__url" type="text" value=command.request.url enter=(action this.onSendRequest command)}}
+    {{input class="resource-panel__url" type="text" value=command.request.url enter=(action this.onSendRequest command) autofocus=true}}
     <button class="btn btn--primary resource-panel__send-button" {{action this.onSendRequest command}}>Send</button>
   </section>
 
