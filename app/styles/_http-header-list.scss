@@ -21,14 +21,15 @@
   }
 
   .http-header {
-    color: #777777;
 
     &__name {
-      font-weight: 500;
+      font-weight: 600;
+      color: #777777;
     }
 
     &__value {
       margin-left: 10px;
+      color: #999999;
     }
   }
 }

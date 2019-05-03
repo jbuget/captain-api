@@ -52,6 +52,7 @@
     "ember-resolver": "^5.0.1",
     "ember-source": "~3.9.0",
     "ember-table": "^2.0.0-beta.7",
+    "ember-truth-helpers": "^2.1.0",
     "eslint-plugin-ember": "^5.2.0",
     "file-saver": "^2.0.1",
     "ivy-codemirror": "^2.1.0",
@@ -63,5 +64,8 @@
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
+  },
+  "dependencies": {
+    "json-formatter-js": "^2.2.1"
   }
 }

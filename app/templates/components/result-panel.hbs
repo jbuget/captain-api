@@ -21,18 +21,9 @@
       </div>
     </section>
 
-    <section class="result-panel__headers">
-      <HttpHeaderList @title="Request headers" @httpHeaders={{command.request.httpRequest.headers}}/>
-      <HttpHeaderList @title="Response headers" @httpHeaders={{command.response.httpResponse.headers}}/>
+    <section class="result-panel__response">
+      <ResponsePanel @command={{command}}/>
     </section>
 
-    <section class="result-panel__body">
-      <h3>Body</h3>
-      <div class="code-wrapper">
-        {{ivy-codemirror
-          value=command.response.bodyRaw
-          options=(hash readOnly=true)}}
-      </div>
-    </section>
   {{/if}}
 </div>

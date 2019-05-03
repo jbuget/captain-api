@@ -1,0 +1,32 @@
+<nav class="response-panel__navbar">
+  <ul class="response-panel__navbar-items">
+    <li class="response-panel__navbar-item {{if (eq currentView 'RESPONSE_HEADERS') 'active' ''}}">
+      <a href="#" {{action "selectView" "RESPONSE_HEADERS"}}>Headers</a>
+    </li>
+    <li class="response-panel__navbar-item {{if (eq currentView 'RESPONSE_BODY_PREVIEW') 'active' ''}}">
+      <a href="#" {{action "selectView" "RESPONSE_BODY_PREVIEW"}}>Preview</a>
+    </li>
+    <li class="response-panel__navbar-item {{if (eq currentView 'RESPONSE_BODY_RAW') 'active' ''}}">
+      <a href="#" {{action "selectView" "RESPONSE_BODY_RAW"}}>Raw</a>
+    </li>
+  </ul>
+</nav>
+
+{{#if (eq currentView "RESPONSE_HEADERS")}}
+  <section class="response-panel__headers">
+    <HttpHeaderList @title="Request headers" @httpHeaders={{command.request.httpRequest.headers}}/>
+    <HttpHeaderList @title="Response headers" @httpHeaders={{command.response.httpResponse.headers}}/>
+  </section>
+{{/if}}
+
+{{#if (eq currentView "RESPONSE_BODY_PREVIEW")}}
+  <section class="response-panel__body-preview">
+    <JsonExplorer @value={{command.response.bodyPreview}}/>
+  </section>
+{{/if}}
+
+{{#if (eq currentView "RESPONSE_BODY_RAW")}}
+  <section class="response-panel__body-raw">
+    {{command.response.bodyRaw}}
+  </section>
+{{/if}}

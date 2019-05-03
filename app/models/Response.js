@@ -36,13 +36,18 @@ export default EmberObject.extend({
       return h;
     }, []);
 
+    let bodyPreview;
+    if (this.httpResponse.headers.has('content-type') && this.httpResponse.headers.get('content-type').includes('application/json')) {
+      bodyPreview = await this.httpResponse.json();
+    }
+
     let bodyRaw;
     if (this.httpResponse.headers.has('content-type') && this.httpResponse.headers.get('content-type').includes('octet-stream')) {
       const responseBodyBlob = await this.httpResponse.blob();
       saveAs(responseBodyBlob, `file`);
       bodyRaw = 'A file should have been downloaded on your computer.';
     } else {
-      bodyRaw = await this.httpResponse.text();
+      bodyRaw = JSON.stringify(bodyPreview);
     }
 
     this.setProperties({
@@ -50,7 +55,8 @@ export default EmberObject.extend({
       status: status.code,
       statusText: status.text,
       headers,
-      bodyRaw
+      bodyPreview,
+      bodyRaw,
     });
   }
 
