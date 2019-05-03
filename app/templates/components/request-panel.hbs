@@ -27,23 +27,8 @@
     <button class="btn btn--primary resource-panel__send-button" {{action this.onSendRequest command}}>Send</button>
   </section>
 
-  <section class="request-panel__headers">
-    <h3>Headers</h3>
-    <div class="code-wrapper">
-      {{ivy-codemirror
-        value=command.request.headers
-        options=(hash mode="yaml" lineNumbers=true)
-        valueUpdated=(action (mut command.request.headers))}}
-    </div>
+  <section class="request-panel__query">
+    <QueryPanel @request={{command.request}}/>
   </section>
 
-  <section class="request-panel__body">
-    <h3>Payload</h3>
-    <div class="code-wrapper">
-      {{ivy-codemirror
-        value=command.request.body
-        options=(hash lineNumbers=true)
-        valueUpdated=(action (mut command.request.body))}}
-    </div>
-  </section>
 </div>

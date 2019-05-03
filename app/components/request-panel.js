@@ -6,6 +6,10 @@ export default Component.extend({
   classNames: ['panel', 'request-panel'],
 
   // Props
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  methods: null,
 
+  init() {
+    this._super(...arguments);
+    this.set('methods', [['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']]);
+  }
 });
