@@ -11,9 +11,11 @@
 @import "ember-modal-dialog/ember-modal-appearance";
 @import "ember-power-select";
 
+@import "./ember-modal-dialog-custom";
+@import "./ember-power-select-custom";
+
 @import "./command-editor";
 @import "./connection";
-@import "./ember-modal-dialog";
 @import "./form";
 @import "./http-header-list";
 @import "./panel";
@@ -27,6 +29,7 @@ html {
   margin: 0;
   font-family: 'Roboto', Arial, sans-serif;
   color: #222222;
+  font-size: 14px;
 }
 
 body {
@@ -78,12 +81,15 @@ table {
   }
 }
 
+input {
+  font-size: 1rem;
+  line-height: 1.2rem;
+}
 
 .btn {
   border: 1px solid #DDDDDD;
   border-radius: 3px;
   cursor: pointer;
-  font-size: 0.85rem;
   text-align: center;
   padding: 5px 20px;
 
@@ -107,7 +113,6 @@ input {
   padding: 5px;
   border: 1px solid #DDDDDD;
   margin: 0;
-  font-size: 0.85rem;
   color: #555555;
   box-sizing: border-box;
 }
@@ -167,7 +172,6 @@ input {
   color: #666666;
   border-top: 1px solid #DDDDDD;
   padding: 5px 10px;
-  font-size: 0.85rem;
   line-height: 1.2rem;
   display: flex;
   justify-content: space-between;
