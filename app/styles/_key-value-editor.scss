@@ -8,6 +8,7 @@
   }
 
   &__header {
+    color: #999999;
 
     &--key {
       width: 200px;
@@ -15,6 +16,10 @@
 
     &--value {
       width: 400px;
+    }
+
+    &--insert {
+
     }
   }
 
@@ -25,9 +30,11 @@
   &__row {
     display: flex;
     flex-direction: row;
+    border-bottom: 1px solid #DDDDDD;
   }
 
   &__cell {
+    border: none;
 
     &--key {
       width: 200px;

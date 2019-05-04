@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { A } from '@ember/array';
-import { join, remove } from 'lodash';
+import { defaultTo, join, remove } from 'lodash';
 
 export default Component.extend({
 
@@ -17,16 +17,17 @@ export default Component.extend({
   rows: computed('data', function() {
     if (this.data) {
       const rows = A();
-      this.data.split('\n').forEach((row) => {
-        if (row) {
-          const [key, value] = row.split(':');
-          if (key && value) {
-            rows.push({
-              key: key.trim(),
-              value: value.trim(),
-            });
-          }
-        }
+      this.data.split('\n').forEach((row, index) => {
+        let [key, value] = row.split(':');
+
+        key = defaultTo(key, '');
+        value = defaultTo(value, '');
+
+        rows.push({
+          id: index,
+          key: key.trim(),
+          value: value.trim(),
+        });
       });
       return rows;
     }
@@ -40,14 +41,34 @@ export default Component.extend({
 
   actions: {
 
-    deleteRow(key) {
-      return this._deleteRow(key);
+    insertRow() {
+      if (!this.data || this.data.trim() === '') {
+        this.set('data', ':');
+      } else {
+        this.set('data', `${this.data}\n:`);
+      }
+    },
+
+    deleteRow(id) {
+      return this._deleteRow(id);
+    },
+
+    updateRows() {
+      const data = this.rows.reduce((data, row) => {
+        const entry = `${row.key}: ${row.value}`;
+        if (!data || data === '') {
+          return entry;
+        }
+        return `${data}\n${entry}`;
+      }, '');
+
+      this.set('data', data);
     }
   },
 
-  _deleteRow(key) {
+  _deleteRow(id) {
     const rows = A(this.rows);
-    remove(rows, (row) => row.key === key);
+    remove(rows, (row) => row.id === id);
     const entries = rows.map((row) => `${row.key}: ${row.value}`);
     const data = join(entries, '\n');
     this.set('data', data);

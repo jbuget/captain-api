@@ -1,14 +1,15 @@
 <div class="key-value-editor__headers">
   <div class="key-value-editor__header key-value-editor__header--key">{{this.keyHeader}}</div>
   <div class="key-value-editor__header key-value-editor__header--value">{{this.valueHeader}}</div>
+  <button class="key-value-editor__header key-value-editor__header--insert" {{action "insertRow"}}>{{fa-icon 'plus'}}</button>
 </div>
 
 <div class="key-value-editor__rows">
   {{#each rows as |row index|}}
     <div class="key-value-editor__row">
-      {{input class="key-value-editor__cell key-value-editor__cell--key" value=row.key}}
-      {{input class="key-value-editor__cell key-value-editor__cell--value" value=row.value}}
-      <button class="key-value-editor__cell key-value-editor__cell--delete" {{action "deleteRow" row.key}}>{{fa-icon 'minus-circle'}}</button>
+      {{input class="key-value-editor__cell key-value-editor__cell--key" value=row.key focus-out=(action "updateRows")}}
+      {{input class="key-value-editor__cell key-value-editor__cell--value" value=row.value focus-out=(action "updateRows")}}
+      <button class="key-value-editor__cell key-value-editor__cell--delete" {{action "deleteRow" row.id}}>{{fa-icon 'times'}}</button>
     </div>
   {{/each}}
 </div>

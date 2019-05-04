@@ -28,6 +28,23 @@ module.only('Unit | Components | key-value-editor', function(hooks) {
       ];
       assert.deepEqual(actualRows, expectedRows);
     });
+
+    test('should take into account empty entries', function(assert) {
+      // given
+      let component = this.owner.lookup('component:key-value-editor');
+      const requestHeaders = 'Foo: Bar\n:';
+      component.set('data', requestHeaders);
+
+      // when
+      const actualRows = component.rows;
+
+      // then
+      const expectedRows = [
+        { key: 'Foo', value: 'Bar' },
+        { key: '', value: '' }
+      ];
+      assert.deepEqual(actualRows, expectedRows);
+    });
   });
 
   module('>_deleteRow', function() {
