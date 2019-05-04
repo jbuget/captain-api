@@ -58,6 +58,7 @@
     "ivy-codemirror": "^2.1.0",
     "js-yaml": "^3.13.1",
     "loader.js": "^4.7.0",
+    "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "qunit-dom": "^0.8.0",
     "sass": "^1.19.0"

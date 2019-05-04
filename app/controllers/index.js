@@ -43,7 +43,7 @@ export default Controller.extend({
     },
 
     async createResource(resource) {
-      const recordId = await this.airtable.createResource(resource);
+      await this.airtable.createResource(resource);
       await this._reloadResources();
     },
 
@@ -54,7 +54,7 @@ export default Controller.extend({
         headers: command.request.headers,
         body: command.request.body,
       });
-      const recordId = await this.airtable.updateResource(command.resource);
+      await this.airtable.updateResource(command.resource);
       await this._reloadResources();
     },
 

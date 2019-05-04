@@ -13,7 +13,7 @@ export default Component.extend({
   headers: computed('httpHeaders', function() {
     if (this.httpHeaders) {
       return Object.keys(this.httpHeaders.map).reduce((h, key) => {
-        h.push({ name: key, value: this.httpHeaders.map[key]});
+        h.push({ key, value: this.httpHeaders.map[key]});
         return h;
       }, []);
     }

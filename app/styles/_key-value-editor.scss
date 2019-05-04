@@ -1,0 +1,45 @@
+.key-value-editor {
+
+  &__headers {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0;
+    border-bottom: 1px solid #DDDDDD;
+  }
+
+  &__header {
+
+    &--key {
+      width: 200px;
+    }
+
+    &--value {
+      width: 400px;
+    }
+  }
+
+  &__rows {
+    padding: 10px 0;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__cell {
+
+    &--key {
+      width: 200px;
+    }
+
+    &--value {
+      width: 400px;
+    }
+
+    &--delete {
+
+    }
+  }
+
+}
