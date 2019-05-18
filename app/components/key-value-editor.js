@@ -24,6 +24,16 @@ export default Component.extend({
     this._updateRows();
   },
 
+  didRender() {
+    this._super(...arguments);
+    if (this.focusOnLastRowKey) {
+      const $rowKeyInputFields = this.element.querySelectorAll('.key-value-editor__cell--key');
+      const $lastRowKeyInputField = $rowKeyInputFields[$rowKeyInputFields.length - 1];
+      $lastRowKeyInputField.focus();
+      this.focusOnLastRowKey = false;
+    }
+  },
+
   actions: {
 
     insertRow() {
@@ -74,12 +84,12 @@ export default Component.extend({
   },
 
   _insertRow() {
+    this.focusOnLastRowKey = true;
     if (!this.data || this.data.trim() === '') {
       this.set('data', ':');
     } else {
       this.set('data', `${this.data}\n:`);
     }
-    this._updateRows();
   },
 
   _deleteRow(id) {
@@ -88,7 +98,6 @@ export default Component.extend({
     const entries = rows.map((row) => `${row.key}: ${row.value}`);
     const data = join(entries, '\n');
     this.set('data', data);
-    this._updateRows();
   }
 
 });
