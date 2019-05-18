@@ -8,7 +8,7 @@ export default Service.extend({
     this._super(...arguments);
     this.set('variables', [
       { key: 'HOST', value: 'http://localhost:3000' },
-      { key: 'ACCESS_TOKEN', value: 'abcd-1234' },
+      { key: 'ACCESS_TOKEN', value: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJzb3VyY2UiOiJwaXgiLCJpYXQiOjE1NTcxNzgwMjUsImV4cCI6MTU1Nzc4MjgyNX0.Gs96mZ_36jTQKkkpXqbX7B2pIF2J4DyxbUK7naIIDAo' },
     ]);
   },
 

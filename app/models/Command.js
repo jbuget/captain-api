@@ -7,8 +7,15 @@ import moment from 'moment';
 export default EmberObject.extend({
 
   resource: null, // Resource
-  request: Request.create(), // Request
+  request: null, // Request
   response: null, // Response
+
+  init() {
+    this._super(...arguments);
+    if (!this.request) {
+      this.set('request', Request.create());
+    }
+  },
 
   async execute(settings) {
     const startTime = moment();

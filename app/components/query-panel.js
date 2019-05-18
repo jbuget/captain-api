@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 
+// eslint-disable-next-line no-unused-vars
 const VIEW_QUERY_HEADERS = 'QUERY_HEADERS';
 const VIEW_QUERY_PAYLOAD = 'QUERY_PAYLOAD';
 

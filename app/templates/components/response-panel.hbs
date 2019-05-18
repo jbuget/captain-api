@@ -1,12 +1,12 @@
 <nav class="response-panel__navbar">
   <ul class="response-panel__navbar-items">
-    <li class="response-panel__navbar-item {{if (eq currentView 'RESPONSE_HEADERS') 'active' ''}}">
+    <li class="response-panel__navbar-item {{if (eq currentView "RESPONSE_HEADERS") "active" ""}}">
       <a href="#" {{action "selectView" "RESPONSE_HEADERS"}}>Headers</a>
     </li>
-    <li class="response-panel__navbar-item {{if (eq currentView 'RESPONSE_BODY_PREVIEW') 'active' ''}}">
+    <li class="response-panel__navbar-item {{if (eq currentView "RESPONSE_BODY_PREVIEW") "active" ""}}">
       <a href="#" {{action "selectView" "RESPONSE_BODY_PREVIEW"}}>Preview</a>
     </li>
-    <li class="response-panel__navbar-item {{if (eq currentView 'RESPONSE_BODY_RAW') 'active' ''}}">
+    <li class="response-panel__navbar-item {{if (eq currentView "RESPONSE_BODY_RAW") "active" ""}}">
       <a href="#" {{action "selectView" "RESPONSE_BODY_RAW"}}>Raw</a>
     </li>
   </ul>

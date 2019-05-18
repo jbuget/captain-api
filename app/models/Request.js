@@ -32,9 +32,9 @@ export default EmberObject.extend({
 
     const httpRequest = new HttpRequest(url, {
       method,
-      headers: headers,
+      headers,
       body,
-      mode: 'no-cors'
+      mode: 'cors'
     });
 
     this.set('httpRequest', httpRequest);

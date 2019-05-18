@@ -10,6 +10,6 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.set('methods', [['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']]);
+    this.set('methods', ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']);
   }
 });

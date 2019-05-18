@@ -21,7 +21,7 @@ export default Route.extend({
         await this.airtable.connect(airtableApiKey, airtableBaseId);
         this.transitionTo('index');
       } catch(err) {
-        console.error(err);
+        throw err;
       }
     }
   }
