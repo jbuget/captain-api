@@ -1,13 +1,17 @@
+import { on } from '@ember/object/evented';
 import Component from '@ember/component';
 import { A } from '@ember/array';
 import {  defaultTo, join, remove } from 'lodash';
+import { EKMixin } from 'ember-keyboard';
+import { keyUp } from 'ember-keyboard';
 
-export default Component.extend({
+export default Component.extend(EKMixin, {
 
   // Element
   classNames: ['key-value-editor'],
 
   // Props
+  keyboardActivated: true,
   keyHeader: 'Key',
   valueHeader: 'Value',
   data: null,
@@ -33,6 +37,10 @@ export default Component.extend({
       this.focusOnLastRowKey = false;
     }
   },
+
+  addHeader: on(keyUp('ctrl+KeyH'), function() {
+    return this._insertRow();
+  }),  
 
   actions: {
 
