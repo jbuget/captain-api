@@ -1,13 +1,30 @@
-import { A } from '@ember/array';
+/* eslint-disable no-undef */
 import ModalDialog from 'pixman/components/modal-dialog';
+import { inject as service } from '@ember/service';
 
 export default ModalDialog.extend({
 
-  containerClass: "settings-modal",
+  // DI
+  settings: service(),
+
+  // Element
+  containerClass: 'settings-modal',
 
   init() {
     this._super(...arguments);
-    this.set('editedVariables', A(this.variables));
+    this.settings.reloadVariables();
+  },
+
+  actions: {
+
+    async saveChanges() {
+      await this.settings.updateVariables();
+      this.onClose();
+    },
+
+    cancelChanges() {
+      this.onClose();
+    }
   }
 
 });

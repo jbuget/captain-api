@@ -11,7 +11,10 @@
 
 {{#if (eq currentView "QUERY_HEADERS")}}
   <section class="query-panel__headers">
-    <KeyValueEditor @keyHeader="Header name" @valueHeader="Header value" @data={{this.request.headers}} />
+    <KeyValueEditor
+    @keyHeader="Header name"
+    @valueHeader="Header value"
+    @data={{request.headers}} />
   </section>
 {{/if}}
 

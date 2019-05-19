@@ -1,4 +1,5 @@
 import Service from '@ember/service';
+import { A } from '@ember/array';
 
 export default Service.extend({
 
@@ -6,18 +7,25 @@ export default Service.extend({
 
   init() {
     this._super(...arguments);
-    this.set('variables', [
-      { key: 'HOST', value: 'http://localhost:3000' },
-      { key: 'ACCESS_TOKEN', value: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJzb3VyY2UiOiJwaXgiLCJpYXQiOjE1NTcxNzgwMjUsImV4cCI6MTU1Nzc4MjgyNX0.Gs96mZ_36jTQKkkpXqbX7B2pIF2J4DyxbUK7naIIDAo' },
-    ]);
+    this.reloadVariables();
+  },
+
+  reloadVariables() {
+    let variables = A();
+    const storedVariables = window.localStorage.getItem('settingsVariables');
+    if (storedVariables) {
+      variables = A(JSON.parse(storedVariables));
+    }
+    this.set('variables', variables);
+  },
+
+  updateVariables() {
+    const serializedVariables = JSON.stringify(this.variables);
+    window.localStorage.setItem('settingsVariables', serializedVariables);
   },
 
   getVariable(key) {
     return this.variables.findBy('key', key);
-  },
-
-  setVariables(editedVariables) {
-    this.set('variables', editedVariables);
   },
 
   replaceVariables(expression) {
@@ -29,6 +37,6 @@ export default Service.extend({
       });
     }
     return null;
-  }
+  },
 
 });

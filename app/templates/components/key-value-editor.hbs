@@ -9,7 +9,7 @@
     <div class="key-value-editor__row">
       {{input class="key-value-editor__cell key-value-editor__cell--key" value=row.key focus-out=(action "updateRow" index)}}
       {{input class="key-value-editor__cell key-value-editor__cell--value" value=row.value focus-out=(action "updateRow" index)}}
-      <button class="key-value-editor__cell key-value-editor__cell--delete" {{action "deleteRow" row.id}}>{{fa-icon "times"}}</button>
+      <button class="key-value-editor__cell key-value-editor__cell--delete" {{action "deleteRow" index}}>Delete</button>
     </div>
   {{/each}}
 </div>

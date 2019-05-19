@@ -29,9 +29,8 @@
 
     {{#if isShowingSettingsModal}}
       <SettingsModal
-          @variables={{this.settings.variables}}
           @onClose={{action (mut isShowingSettingsModal) false}}
-          @onSave={{action "saveSettings"}}/>
+          @onSave={{action (mut isShowingSettingsModal) false}}/>
     {{/if}}
 
   </main>

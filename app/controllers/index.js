@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import Command from 'pixman/models/Command';
 import Request from 'pixman/models/Request';
+import { A } from '@ember/array';
 
 export default Controller.extend({
 
@@ -33,7 +34,7 @@ export default Controller.extend({
       const request = Request.create({
         url: resource.url,
         method: resource.method,
-        headers: resource.headers,
+        headers: A(resource.headers),
         body: resource.body,
       });
       const command = Command.create({ resource, request });
@@ -60,11 +61,6 @@ export default Controller.extend({
 
     async executeCommand(command) {
       await command.execute(this.settings);
-    },
-
-    saveSettings(editedVariables) {
-      this.settings.setVariables(editedVariables);
-      this.set('isShowingSettingsModal', false);
     },
 
     cancelCommand() {

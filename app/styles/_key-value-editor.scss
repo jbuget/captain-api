@@ -45,7 +45,12 @@
     }
 
     &--delete {
-
+      span {
+        content: 'x';
+        background-color: #f7f7f7;
+        color: #222222;
+        display: inline-block;
+      }
     }
   }
 

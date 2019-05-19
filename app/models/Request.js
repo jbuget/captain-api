@@ -1,8 +1,6 @@
 import EmberObject from '@ember/object';
-import fetch, {
-  Headers as HttpHeaders,
-  Request as HttpRequest
-} from 'fetch';
+import fetch, { Headers as HttpHeaders, Request as HttpRequest } from 'fetch';
+import { forEach } from 'lodash';
 
 export default EmberObject.extend({
 
@@ -16,13 +14,8 @@ export default EmberObject.extend({
   send(settings) {
     const headers = new HttpHeaders();
     if (this.headers) {
-      this.headers.split('\n').forEach((header) => {
-        if (header) {
-          const [name, value] = header.split(':');
-          if (name && value) {
-            headers.append(name.trim(), settings.replaceVariables(value.trim()));
-          }
-        }
+      forEach(this.headers, (header) => {
+        headers.append(header.key, header.value);
       });
     }
 

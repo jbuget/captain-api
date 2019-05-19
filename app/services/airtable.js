@@ -33,14 +33,18 @@ export default Service.extend({
 
   async listResources() {
     const data = await this.base('Resources').select({ view: 'Grid view' }).all();
-    return A(data.map((record) => Resource.create({
-      id: record.id,
-      name: record.fields.Name,
-      url: record.fields.URL,
-      method: record.fields.Method,
-      headers: record.fields.Headers,
-      body: record.fields.Body
-    })));
+    return A(data.map((record) => {
+      const headers = record.fields.Headers ? JSON.parse(record.fields.Headers) : [];
+
+      return Resource.create({
+        id: record.id,
+        name: record.fields.Name,
+        url: record.fields.URL,
+        method: record.fields.Method,
+        headers: A(headers),
+        body: record.fields.Body
+      });
+    }));
   },
 
   createResource(resource) {
@@ -68,7 +72,7 @@ export default Service.extend({
       'Method': resource.method,
       'URL': resource.url,
       'Name': resource.name || resource.url,
-      'Headers': resource.headers,
+      'Headers': JSON.stringify(resource.headers),
       'Body': resource.body
     });
   },

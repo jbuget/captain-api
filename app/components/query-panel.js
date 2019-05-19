@@ -16,7 +16,7 @@ export default Component.extend({
 
     selectView(viewName) {
       this.set('currentView', viewName);
-    }
+    },
   }
 
 });
