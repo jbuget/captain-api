@@ -4,7 +4,7 @@ import { on } from '@ember/object/evented';
 
 export default ModalDialog.extend(EmberKeyboardMixin, {
 
-  targetAttachment: "center",
+  targetAttachment: 'center',
   translucentOverlay: true,
   clickOutsideToClose: true,
 

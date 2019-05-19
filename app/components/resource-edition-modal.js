@@ -3,7 +3,7 @@ import Resource from 'pixman/models/Resource';
 
 export default ModalDialog.extend({
 
-  containerClass: "resource-edition-modal",
+  containerClass: 'resource-edition-modal',
 
   init() {
     this._super(...arguments);

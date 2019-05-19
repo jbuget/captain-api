@@ -15,6 +15,9 @@ module.exports = {
     browser: true
   },
   rules: {
+    'object-curly-spacing': ['error', 'always'],
+    'quotes': ['error', 'single'],
+    'space-before-function-paren': ['error', { 'anonymous': 'never', 'named': 'never', 'asyncArrow': 'always' }]
   },
   overrides: [
     // node files

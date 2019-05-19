@@ -14,7 +14,7 @@ export default Component.extend(EKMixin, {
 
   saveCommand: on(keyUp('ctrl+KeyS'), function() {
     this.onSaveRequest(this.command);
-  }),  
+  }),
 
   init() {
     this._super(...arguments);
