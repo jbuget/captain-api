@@ -1,13 +1,16 @@
 import Component from '@ember/component';
 import { A } from '@ember/array';
 import { computed } from '@ember/object';
+import { on } from '@ember/object/evented';
+import { EKMixin as EmberKeyboardMixin, keyUp } from 'ember-keyboard';
 
-export default Component.extend({
+export default Component.extend(EmberKeyboardMixin, {
 
   // Element
   classNames: ['key-value-editor'],
 
   // Props
+  keyboardActivated: true,
   keyHeader: 'Key',
   valueHeader: 'Value',
   data: null, // Array of { key, value }
@@ -39,11 +42,14 @@ export default Component.extend({
     }
   },
 
+  closeOnEsc: on(keyUp('ctrl+KeyN'), function() {
+    this._insertRow();
+  }),
+
   actions: {
 
     insertRow() {
-      this.focusOnLastRowKey = true;
-      this.data.pushObject({ key: '', value: '' });
+      this._insertRow();
     },
 
     updateRow(index) {
@@ -54,8 +60,13 @@ export default Component.extend({
     },
 
     deleteRow(index) {
-      return this.data.removeAt(index);
+      this.data.removeAt(index);
     },
+  },
+
+  _insertRow() {
+    this.focusOnLastRowKey = true;
+    this.data.pushObject({ key: '', value: '' });
   },
 
 });
