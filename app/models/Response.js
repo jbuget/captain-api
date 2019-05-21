@@ -32,7 +32,7 @@ export default EmberObject.extend({
     }
 
     const headers = Object.keys(this.httpResponse.headers.map).reduce((h, key) => {
-      h.push({ name: key, value: this.httpResponse.headers.map[key]});
+      h.push({ name: key, value: this.httpResponse.headers.map[key] });
       return h;
     }, []);
 
@@ -44,7 +44,7 @@ export default EmberObject.extend({
     let bodyRaw;
     if (this.httpResponse.headers.has('content-type') && this.httpResponse.headers.get('content-type').includes('octet-stream')) {
       const responseBodyBlob = await this.httpResponse.blob();
-      saveAs(responseBodyBlob, `file`);
+      saveAs(responseBodyBlob, 'file');
       bodyRaw = 'A file should have been downloaded on your computer.';
     } else {
       bodyRaw = JSON.stringify(bodyPreview);

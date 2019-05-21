@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import Command from 'pixman/models/Command';
+import Command from 'granny/models/Command';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({

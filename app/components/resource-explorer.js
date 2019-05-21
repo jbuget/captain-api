@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import Resource from 'pixman/models/Resource';
+import Resource from 'granny/models/Resource';
 
 export default Component.extend({
 

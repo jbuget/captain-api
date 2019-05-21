@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import ModalDialog from 'pixman/components/modal-dialog';
+import ModalDialog from 'granny/components/modal-dialog';
 import { inject as service } from '@ember/service';
 
 export default ModalDialog.extend({

@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { A } from '@ember/array';
 import fetch from 'fetch';
-import Resource from 'pixman/models/Resource';
+import Resource from 'granny/models/Resource';
 
 export default Component.extend({
 

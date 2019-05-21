@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import Command from 'pixman/models/Command';
-import Request from 'pixman/models/Request';
+import Command from 'granny/models/Command';
+import Request from 'granny/models/Request';
 import { A } from '@ember/array';
 
 export default Controller.extend({

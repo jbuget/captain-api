@@ -1,4 +1,4 @@
-import isSimpleRequest from 'pixman/utils/is-simple-request';
+import isSimpleRequest from 'granny/utils/is-simple-request';
 import { module, test } from 'qunit';
 import {
   Headers as HttpHeaders,

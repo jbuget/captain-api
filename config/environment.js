@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'pixman',
+    modulePrefix: 'granny',
     environment,
     rootURL: '/',
     locationType: 'auto',

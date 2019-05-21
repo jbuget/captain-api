@@ -1,6 +1,6 @@
 import EmberObject from '@ember/object';
-import Request from 'pixman/models/Request';
-import Response from 'pixman/models/Response';
+import Request from 'granny/models/Request';
+import Response from 'granny/models/Response';
 import { Response as HttpResponse } from 'fetch';
 import moment from 'moment';
 

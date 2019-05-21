@@ -1,7 +1,7 @@
 import Service from '@ember/service';
 import { A } from '@ember/array';
 import Airtable from 'airtable';
-import Resource from 'pixman/models/Resource';
+import Resource from 'granny/models/Resource';
 import { computed } from '@ember/object';
 
 export default Service.extend({

@@ -1,5 +1,5 @@
-import ModalDialog from 'pixman/components/modal-dialog';
-import Resource from 'pixman/models/Resource';
+import ModalDialog from 'granny/components/modal-dialog';
+import Resource from 'granny/models/Resource';
 
 export default ModalDialog.extend({
 

@@ -1,8 +1,8 @@
 {
-  "name": "pixman",
+  "name": "granny",
   "version": "0.1.0",
   "private": true,
-  "description": "Small description for pixman goes here",
+  "description": "Small description for granny goes here",
   "repository": "",
   "license": "MIT",
   "author": "",
@@ -56,6 +56,7 @@
     "file-saver": "^2.0.1",
     "ivy-codemirror": "^2.1.0",
     "js-yaml": "^3.13.1",
+    "json-formatter-js": "^2.2.1",
     "loader.js": "^4.7.0",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
@@ -64,8 +65,5 @@
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
-  },
-  "dependencies": {
-    "json-formatter-js": "^2.2.1"
   }
 }
