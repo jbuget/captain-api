@@ -3,11 +3,12 @@
 module.exports = {
 
   development: {
-    client: 'postgresql',
+    client: 'pg',
     connection: {
-      database: 'granny',
+      host : 'localhost',
       user: 'postgres',
-      password: 'example'
+      password: 'example',
+      database: 'granny',
     },
     pool: {
       min: 2,
@@ -22,7 +23,7 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
+    client: 'pg',
     connection: {
       database: process.env.POSTGRES_DB,
       user: process.env.POSTGRES_USER,

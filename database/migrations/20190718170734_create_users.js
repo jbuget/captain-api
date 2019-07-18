@@ -1,8 +1,8 @@
-exports.up = function(knex) {
+exports.up = (knex) => {
 
   return knex.schema.createTable('users', (t) => {
     t.increments('id').unsigned().primary();
-    t.dateTime('createdAt').notNull();
+    t.dateTime('createdAt').notNull().defaultTo(knex.fn.now());
     t.dateTime('updatedAt').nullable();
     t.dateTime('deletedAt').nullable();
 
@@ -14,7 +14,7 @@ exports.up = function(knex) {
 
 };
 
-exports.down = function(knex) {
+exports.down = (knex) => {
 
   return knex.schema.dropTable('users');
 };

@@ -16,7 +16,7 @@ Wait. Browse http://localhost:8080.
 | Server   | db         |
 | User     | postgres   |
 | Password | example    |
-| Database | postgres   |
+| Database | granny     |
 
 ## DB migrations
 
