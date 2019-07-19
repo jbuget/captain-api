@@ -1,4 +1,4 @@
-const tableName = 'users';
+const tableName = 'requests';
 
 exports.up = function(knex) {
 
@@ -8,10 +8,14 @@ exports.up = function(knex) {
     t.dateTime('updated_at').nullable();
     t.dateTime('deleted_at').nullable();
 
-    t.string('first_name').notNull();
-    t.string('last_name').notNull();
-    t.string('email').notNull();
-    t.string('password').notNull();
+    t.string('name').notNull();
+    t.string('url').notNull();
+    t.string('method').notNull();
+    t.text('headers').nullable();
+    t.text('body').nullable();
+
+    t.integer('collection_id').unsigned().notNullable();
+    t.foreign('collection_id').references('id').inTable('collections');
   });
 };
 
