@@ -1,53 +1,15 @@
 
-/* Sequelize */
-
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize('postgres://postgres:example@localhost/granny');
-
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
-
-const Model = Sequelize.Model;
-class User extends Model {}
-User.init({
-  // attributes
-  firstName: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  lastName: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    // allowNull defaults to true
-  },
-  email: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  password: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  }
-}, {
-  sequelize,
-  modelName: 'user'
-  // options
-});
+const models = require('./models');
 
 /* Passport */
 
+/*
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
+    models.User.findOne({ email: username }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
@@ -59,6 +21,7 @@ passport.use(new LocalStrategy(
     });
   }
 ));
+*/
 
 /* Express */
 
@@ -68,6 +31,12 @@ const app = express();
 
 app.get('/', function (req, res) {
   res.send('Hello World!')
+});
+
+app.get('/users', (req, res) => {
+  return models.User.findAndCountAll().then((result) => {
+    res.send(result.rows);
+  });
 });
 
 // 404
