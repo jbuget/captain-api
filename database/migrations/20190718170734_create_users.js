@@ -8,8 +8,7 @@ exports.up = function(knex) {
     t.dateTime('updated_at').nullable();
     t.dateTime('deleted_at').nullable();
 
-    t.string('first_name').notNull();
-    t.string('last_name').notNull();
+    t.string('name').notNull();
     t.string('email').notNull();
     t.string('password').notNull();
   });

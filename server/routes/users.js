@@ -1,25 +1,37 @@
-var models = require('../models');
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const models = require('../models');
+const bcrypt = require('bcrypt');
 
 router.get('/', async (req, res) => {
   const users = await models.User.findAll();
-  res.send(users);
+  return res.send(users);
 });
 
 router.post('/', async (req, res) => {
-  await models.User.create({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    password: req.body.password,
-  });
-  res.redirect('/');
+
+  const { name, email, password } = req.body;
+
+  const userMatchingEmail = await models.User.findOne({ where: { email } });
+
+  if (userMatchingEmail) {
+    return res.status(400).send('Existing account');
+  }
+
+  const passwordHash = await bcrypt.hash(password, 10);
+
+  const user = await models.User.create({ name, email, password: passwordHash, });
+
+  return res.send(user);
 });
 
 router.get('/:user_id', async (req, res) => {
-  const user = await models.User.findOne({ where: { id: req.params.user_id } });
-  res.send(user);
+  const user = await models.User.findByPk(req.params.user_id);
+  return res.send(user);
+});
+
+router.post('/:user_id/password-reset', async (req, res) => {
+  return res.send('TODO');
 });
 
 router.delete('/:user_id', async (req, res) => {
@@ -28,7 +40,7 @@ router.delete('/:user_id', async (req, res) => {
       id: req.params.user_id
     }
   });
-  res.redirect('/');
+  return res.redirect('/');
 });
 
 module.exports = router;

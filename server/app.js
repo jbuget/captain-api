@@ -3,9 +3,6 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-const api = require('./routes/index');
-const users = require('./routes/users');
-
 const app = express();
 
 app.use(bodyParser.json());
@@ -13,11 +10,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 
-app.use('/', api);
-app.use('/users', users);
-
+app.use('/', require('./routes/index'));
+app.use('/users', require('./routes/users'));
 
 /* Passport */
+
+const models = require('./models');
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -36,6 +34,8 @@ passport.use(new LocalStrategy(
     });
   }
 ));
+
+app.use(passport.initialize());
 
 /* Express */
 
