@@ -1,5 +1,19 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
-const models = require('./models');
+const api = require('./routes/index');
+const users = require('./routes/users');
+
+const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+app.use('/', api);
+app.use('/users', users);
+
 
 /* Passport */
 
@@ -25,31 +39,15 @@ passport.use(new LocalStrategy(
 
 /* Express */
 
-const express = require('express');
-
-const app = express();
-
-app.get('/', function (req, res) {
-  res.send('Hello World!')
-});
-
-app.get('/users', (req, res) => {
-  return models.User.findAndCountAll().then((result) => {
-    res.send(result.rows);
-  });
-});
-
 // 404
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   res.status(404).send('Sorry cant find that!');
 });
 
 // 5XX
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
 });
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
-});
+module.exports = app;
