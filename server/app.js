@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-const models = require('./models');
+require('./models');
+require('./config/passport');
 
 const app = express();
 
@@ -18,23 +19,6 @@ app.use('/users', require('./routes/users'));
 /* Passport */
 
 const passport = require('passport');
-const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
-
-const passportOpts = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: 'your_jwt_secret',
-  issuer: 'accounts.granny.js',
-  audience: 'granny.js',
-};
-
-passport.use(new JwtStrategy(passportOpts, async (jwtPayload, done) => {
-  const user = await models.User.findByPk(jwtPayload.sub);
-  if (!user) {
-    return done(null, false);
-  }
-  return done(null, user);
-}));
-
 app.use(passport.initialize());
 
 /* Express */

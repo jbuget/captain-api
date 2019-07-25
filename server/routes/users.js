@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const models = require('../models');
 const bcrypt = require('bcrypt');
+const passport = require('passport');
 
-router.get('/', async (req, res) => {
+router.get('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
   const users = await models.User.findAll();
   return res.send(users);
 });
@@ -25,7 +26,7 @@ router.post('/', async (req, res) => {
   return res.send(user);
 });
 
-router.get('/:user_id', async (req, res) => {
+router.get('/:user_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
   const user = await models.User.findByPk(req.params.user_id);
   return res.send(user);
 });
