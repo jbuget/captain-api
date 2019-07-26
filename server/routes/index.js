@@ -23,12 +23,10 @@ router.get('/token', async (req, res) => {
   }
 
   const jwtClaims = {
-    sub: {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-    },
-    iss: 'Granny.js'
+    iss: 'Granny.js',
+    sub: user.id,
+    name: user.name,
+    email: user.email,
   };
 
   const accessToken = jwt.sign(jwtClaims, 'your_jwt_secret');

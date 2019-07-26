@@ -27,7 +27,8 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/:user_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  const user = await models.User.findByPk(req.params.user_id);
+  const userId = (req.params.user_id === 'me') ? req.user.id : req.params.user_id;
+  const user = await models.User.findByPk(userId);
   return res.send(user);
 });
 
