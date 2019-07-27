@@ -7,7 +7,7 @@ exports.up = function(knex) {
     t.dateTime('created_at').notNull().defaultTo(knex.fn.now());
     t.dateTime('updated_at').nullable();
 
-    t.string('token').notNull();
+    t.string('uuid').notNull();
     t.boolean('used').notNull().defaultTo(false);
 
     t.integer('user_id').unsigned().notNullable();

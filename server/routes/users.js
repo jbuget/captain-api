@@ -3,6 +3,7 @@ const router = express.Router();
 const models = require('../models');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+const uuidv5 = require('uuid/v5');
 
 router.get('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
   const users = await models.User.findAll();
@@ -22,6 +23,9 @@ router.post('/', async (req, res) => {
   const passwordHash = await bcrypt.hash(password, 10);
 
   const user = await models.User.create({ name, email, password: passwordHash, });
+
+  const uuid = uuidv5(email, uuidv5.DNS);
+  await models.AccountValidationToken.create({ uuid, user }, { include: ['User'] });
 
   return res.send(user);
 });

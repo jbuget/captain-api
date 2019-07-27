@@ -6,37 +6,32 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      field: 'name',
     },
     description: {
       type: DataTypes.TEXT,
       allowNull: true,
-      field: 'description',
     },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: true,
-      field: 'created_at',
       defaultValue: DataTypes.NOW,
     },
     updatedAt: {
       type: DataTypes.DATE,
       allowNull: true,
-      field: 'updated_at',
     },
     deletedAt: {
       type: DataTypes.DATE,
       allowNull: true,
-      field: 'deleted_at',
     },
 
   }, {
-    tableName: 'teams'
+    tableName: 'teams',
+    underscored: true,
   });
 
-
   Team.associate = (models) => {
-    Team.belongsToMany(models.User, { as: 'members', through: models.Membership, foreignKey: 'team_id' });
+    Team.belongsToMany(models.User, { as: 'members', through: models.Membership });
   };
 
   return Team;

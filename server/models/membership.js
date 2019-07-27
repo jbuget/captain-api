@@ -11,22 +11,20 @@ module.exports = (sequelize, DataTypes) => {
     createdAt: {
       type: DataTypes.DATE,
       allowNull: true,
-      field: 'created_at',
       defaultValue: DataTypes.NOW,
     },
     updatedAt: {
       type: DataTypes.DATE,
       allowNull: true,
-      field: 'updated_at',
     },
     deletedAt: {
       type: DataTypes.DATE,
       allowNull: true,
-      field: 'deleted_at',
     },
 
   }, {
-    tableName: 'memberships'
+    tableName: 'memberships',
+    underscored: true,
   });
 
   return Membership;
