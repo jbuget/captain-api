@@ -57,8 +57,4 @@ router.post('/password-update', async (req, res) => {
   return res.send('TODO');
 });
 
-router.post('/account-validation', async (req, res) => {
-  return res.send('TODO');
-});
-
 module.exports = router;

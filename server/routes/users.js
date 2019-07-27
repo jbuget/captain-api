@@ -54,4 +54,38 @@ router.delete('/:user_id', async (req, res) => {
   return res.redirect('/');
 });
 
+router.post('/account-validation', async (req, res) => {
+
+  const { userId, token } = req.body;
+
+  const accountValidationToken = await models.AccountValidationToken.findOne({ where: { user_id: userId, token } });
+
+  if (!accountValidationToken) {
+    return res.status(400).send('Invalid account validation token');
+  }
+
+  if (accountValidationToken.used) {
+    return res.status(400).send('Token already used');
+  }
+
+  const user = await models.User.findByPk(userId);
+  if (!user) {
+    return res.status(400).send('User not found');
+  }
+
+  if (user.status !== 'CREATED') {
+    return res.status(400).send('Account already validated');
+  }
+
+  user.status = 'VALIDATED';
+  user.updatedAt = Date.now();
+  await user.save();
+
+  accountValidationToken.used = true;
+  accountValidationToken.updatedAt = Date.now();
+  await accountValidationToken.save();
+
+  return res.send();
+});
+
 module.exports = router;
