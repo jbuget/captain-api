@@ -11,6 +11,7 @@ exports.up = function(knex) {
     t.string('name').notNull();
     t.string('email').notNull();
     t.string('password').notNull();
+    t.string('status').notNull();
   });
 };
 

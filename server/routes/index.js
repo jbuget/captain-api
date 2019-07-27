@@ -22,6 +22,18 @@ router.get('/token', async (req, res) => {
     return res.status(400).send('Bad password');
   }
 
+  if (user.status === 'CREATED') {
+    return res.status(400).send('Invalidated account');
+  }
+
+  if (user.status === 'DISABLED') {
+    return res.status(400).send('Disabled account');
+  }
+
+  if (user.status === 'DELETED') {
+    return res.status(400).send('Deleted account');
+  }
+
   const jwtClaims = {
     iss: 'Granny.js',
     sub: user.id,

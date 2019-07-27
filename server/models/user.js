@@ -18,6 +18,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       field: 'password',
     },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      field: 'status',
+    },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: true,
