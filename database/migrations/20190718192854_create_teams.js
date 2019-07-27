@@ -9,7 +9,7 @@ exports.up = function(knex) {
     t.dateTime('deleted_at').nullable();
 
     t.string('name').notNull();
-    t.text('description').notNull();
+    t.text('description').nullable();
   });
 };
 
