@@ -27,9 +27,22 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/:user_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  // TODO improve authorization control
+  try {
+    const userId = (req.params.user_id === 'me') ? req.user.id : req.params.user_id;
+    const user = await models.User.findByPk(userId, { include: ['teams'] });
+    return res.send(user);
+  } catch (e) {
+    console.error(e);
+    return res.status(500);
+  }
+});
+
+router.get('/:user_id/teams', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  // TODO improve authorization control
   const userId = (req.params.user_id === 'me') ? req.user.id : req.params.user_id;
-  const user = await models.User.findByPk(userId);
-  return res.send(user);
+  const teams = await [];
+  return res.send(teams);
 });
 
 router.post('/:user_id/password-reset', async (req, res) => {

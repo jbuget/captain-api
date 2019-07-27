@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
-  const User = sequelize.define('User', {
+  const Team = sequelize.define('Team', {
 
     // attributes
     name: {
@@ -8,15 +8,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       field: 'name',
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      field: 'email',
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      field: 'password',
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      field: 'description',
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -36,13 +31,13 @@ module.exports = (sequelize, DataTypes) => {
     },
 
   }, {
-    tableName: 'users'
+    tableName: 'teams'
   });
 
-  User.associate = (models) => {
-    User.belongsToMany(models.Team, { as: 'teams', through: models.Membership, foreignKey: 'user_id'  });
+
+  Team.associate = (models) => {
+    Team.belongsToMany(models.User, { as: 'members', through: models.Membership, foreignKey: 'team_id' });
   };
 
-  return User;
-
+  return Team;
 };

@@ -1,4 +1,4 @@
-const tableName = 'collections';
+const tableName = 'requests';
 
 exports.up = function(knex) {
 
@@ -9,6 +9,13 @@ exports.up = function(knex) {
     t.dateTime('deleted_at').nullable();
 
     t.string('name').notNull();
+    t.string('url').notNull();
+    t.string('method').notNull();
+    t.text('headers').nullable();
+    t.text('body').nullable();
+
+    t.integer('team_id').unsigned().notNullable();
+    t.foreign('team_id').references('id').inTable('teams');
   });
 };
 

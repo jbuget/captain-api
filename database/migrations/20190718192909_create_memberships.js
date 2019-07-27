@@ -1,4 +1,4 @@
-const tableName = 'teams';
+const tableName = 'memberships';
 
 exports.up = function(knex) {
 
@@ -8,7 +8,15 @@ exports.up = function(knex) {
     t.dateTime('updated_at').nullable();
     t.dateTime('deleted_at').nullable();
 
-    t.string('name').notNull();
+    t.string('role').notNull();
+
+    t.integer('user_id').unsigned().notNullable();
+    t.foreign('user_id').references('id').inTable('users');
+
+    t.integer('team_id').unsigned().notNullable();
+    t.foreign('team_id').references('id').inTable('teams');
+
+    t.unique(['user_id', 'team_id']);
   });
 };
 
