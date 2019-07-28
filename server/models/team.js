@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
-  const Team = sequelize.define('Team', {
+  const Team = sequelize.define('team', {
 
     // attributes
     name: {
@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Team.associate = (models) => {
-    Team.belongsToMany(models.User, { as: 'members', through: models.Membership });
+    Team.belongsToMany(models.user, { as: 'members', through: models.membership });
   };
 
   return Team;

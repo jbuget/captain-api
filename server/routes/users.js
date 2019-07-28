@@ -6,7 +6,7 @@ const passport = require('passport');
 const uuidv5 = require('uuid/v5');
 
 router.get('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  const users = await models.User.findAll();
+  const users = await models.user.findAll();
   return res.send(users);
 });
 
@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
 
   const { name, email, password } = req.body;
 
-  const userMatchingEmail = await models.User.findOne({ where: { email } });
+  const userMatchingEmail = await models.user.findOne({ where: { email } });
 
   if (userMatchingEmail) {
     return res.status(400).send('Existing account');
@@ -22,10 +22,10 @@ router.post('/', async (req, res) => {
 
   const passwordHash = await bcrypt.hash(password, 10);
 
-  const user = await models.User.create({ name, email, password: passwordHash, });
+  const user = await models.user.create({ name, email, password: passwordHash, });
 
   const uuid = uuidv5(email, uuidv5.DNS);
-  await models.AccountValidationToken.create({ uuid, user }, { include: ['User'] });
+  await models.accountValidationToken.create({ uuid, user_id: user.id });
 
   return res.send(user);
 });
@@ -33,14 +33,14 @@ router.post('/', async (req, res) => {
 router.get('/:user_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
   // TODO improve authorization control
   const userId = (req.params.user_id === 'me') ? req.user.id : req.params.user_id;
-  const user = await models.User.findByPk(userId);
+  const user = await models.user.findByPk(userId);
   return res.send(user);
 });
 
 router.get('/:user_id/teams', passport.authenticate('jwt', { session: false }), async (req, res) => {
   // TODO improve authorization control
   const userId = (req.params.user_id === 'me') ? req.user.id : req.params.user_id;
-  const user = await models.User.findByPk(userId, { include: ['teams'] });
+  const user = await models.user.findByPk(userId, { include: ['teams'] });
   const teams = user.get('teams');
   return res.send(teams);
 });
@@ -50,7 +50,7 @@ router.post('/:user_id/password-reset', async (req, res) => {
 });
 
 router.delete('/:user_id', async (req, res) => {
-  await models.User.destroy({
+  await models.user.destroy({
     where: {
       id: req.params.user_id
     }
@@ -60,9 +60,9 @@ router.delete('/:user_id', async (req, res) => {
 
 router.post('/account-validation', async (req, res) => {
 
-  const { userId, token } = req.body;
+  const { userId, uuid } = req.body;
 
-  const accountValidationToken = await models.AccountValidationToken.findOne({ where: { user_id: userId, token } });
+  const accountValidationToken = await models.accountValidationToken.findOne({ where: { user_id: userId, uuid } });
 
   if (!accountValidationToken) {
     return res.status(400).send('Invalid account validation token');
@@ -72,7 +72,7 @@ router.post('/account-validation', async (req, res) => {
     return res.status(400).send('Token already used');
   }
 
-  const user = await models.User.findByPk(userId);
+  const user = await models.user.findByPk(userId);
   if (!user) {
     return res.status(400).send('User not found');
   }

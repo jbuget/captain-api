@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 router.get('/token', async (req, res) => {
   const { username: email, password } = req.body;
 
-  const user = await models.User.findOne({ where: { email } });
+  const user = await models.user.findOne({ where: { email } });
   if (!user) {
     return res.status(400).send('Unknown account');
   }

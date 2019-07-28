@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
-  const AccountValidationToken = sequelize.define('AccountValidationToken', {
+  const AccountValidationToken = sequelize.define('accountValidationToken', {
 
     // attributes
     uuid: {
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   AccountValidationToken.associate = (models) => {
-    AccountValidationToken.belongsTo(models.User, { foreignKey: 'user_id' });
+    AccountValidationToken.belongsTo(models.user, { foreignKey: 'user_id' });
   };
 
   return AccountValidationToken;

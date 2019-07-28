@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
-  const Membership = sequelize.define('Membership', {
+  const Membership = sequelize.define('membership', {
 
     // attributes
     role: {
