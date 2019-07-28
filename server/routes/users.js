@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
   const user = await models.user.create({ name, email, password: passwordHash, });
 
   const uuid = uuidv5(email, uuidv5.DNS);
-  await models.accountValidationToken.create({ uuid, user_id: user.id });
+  await models.accountValidationToken.create({ uuid, userId: user.id });
 
   return res.send(user);
 });

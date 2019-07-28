@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   AccountValidationToken.associate = (models) => {
-    AccountValidationToken.belongsTo(models.user, { foreignKey: 'user_id' });
+    AccountValidationToken.belongsTo(models.user);
   };
 
   return AccountValidationToken;
