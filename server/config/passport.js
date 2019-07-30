@@ -14,5 +14,8 @@ passport.use(new JwtStrategy(passportOpts, async (jwtPayload, done) => {
   if (!user) {
     return done(null, false);
   }
+  if (user.status !== 'VALIDATED') {
+    return done(null, false);
+  }
   return done(null, user);
 }));

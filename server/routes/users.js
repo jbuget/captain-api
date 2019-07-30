@@ -31,9 +31,24 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/:user_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  // TODO improve authorization control
-  const userId = (req.params.user_id === 'me') ? req.user.id : req.params.user_id;
-  const user = await models.user.findByPk(userId);
+  const queryParamUserId = req.params.user_id;
+  if (queryParamUserId !== 'me' && queryParamUserId !== req.user.id.toString()) {
+    return res.status(403).send('Not allowed');
+  }
+  return res.send(req.user);
+});
+
+router.patch('/:user_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  const queryParamUserId = req.params.user_id;
+  if (queryParamUserId !== 'me' && queryParamUserId !== req.user.id.toString()) {
+    return res.status(403).send('Not allowed');
+  }
+  const user = req.user;
+  for (let attribute in req.body) {
+    user[attribute] = req.body[attribute];
+  }
+  await user.save();
+
   return res.send(user);
 });
 
@@ -49,12 +64,20 @@ router.post('/:user_id/password-reset', async (req, res) => {
   return res.send('TODO');
 });
 
-router.delete('/:user_id', async (req, res) => {
-  await models.user.destroy({
-    where: {
-      id: req.params.user_id
-    }
-  });
+router.delete('/:user_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  const queryParamUserId = req.params.user_id;
+  if (queryParamUserId !== 'me' && queryParamUserId !== req.user.id.toString()) {
+    return res.status(403).send('Not allowed');
+  }
+
+  const user = req.user;
+  user.name = `user_${user.id}`;
+  user.email = `email_${user.id}`;
+  user.password = `password_${user.id}`;
+  user.status = 'DELETED';
+
+  await user.save();
+
   return res.redirect('/');
 });
 
