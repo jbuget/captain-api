@@ -1,9 +1,9 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('requests').del()
+  return knex('resources').del()
     .then(() => {
       // Inserts seed entries
-      return knex('requests').insert([
+      return knex('resources').insert([
         {
           team_id: 1,
           name: 'Google',

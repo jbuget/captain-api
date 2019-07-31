@@ -44,7 +44,8 @@ router.patch('/:user_id', passport.authenticate('jwt', { session: false }), asyn
     return res.status(403).send('Not allowed');
   }
   const user = req.user;
-  for (let attribute in req.body) {
+
+  for (const attribute in req.body) {
     user[attribute] = req.body[attribute];
   }
   await user.save();

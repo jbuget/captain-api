@@ -2,7 +2,6 @@ module.exports = (sequelize, DataTypes) => {
 
   const Team = sequelize.define('team', {
 
-    // attributes
     name: {
       type: DataTypes.STRING,
       allowNull: false,

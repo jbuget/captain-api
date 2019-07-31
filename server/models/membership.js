@@ -2,7 +2,6 @@ module.exports = (sequelize, DataTypes) => {
 
   const Membership = sequelize.define('membership', {
 
-    // attributes
     role: {
       type: DataTypes.STRING,
       allowNull: false,

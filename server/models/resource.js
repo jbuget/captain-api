@@ -1,23 +1,26 @@
 module.exports = (sequelize, DataTypes) => {
 
-  const User = sequelize.define('user', {
+  const Resource = sequelize.define('resource', {
 
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    email: {
+    url: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    password: {
+    method: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    status: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: 'CREATED',
+    headers: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    body: {
+      type: DataTypes.TEXT,
+      allowNull: true,
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -28,20 +31,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: true,
     },
-    deletedAt: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
 
   }, {
-    tableName: 'users',
+    tableName: 'resources',
     underscored: true,
   });
 
-  User.associate = (models) => {
-    User.belongsToMany(models.team, { as: 'teams', through: models.membership });
+  Resource.associate = (models) => {
+    Resource.belongsTo(models.team);
   };
 
-  return User;
+  return Resource;
 
 };

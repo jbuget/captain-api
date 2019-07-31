@@ -2,7 +2,6 @@ module.exports = (sequelize, DataTypes) => {
 
   const AccountValidationToken = sequelize.define('accountValidationToken', {
 
-    // attributes
     uuid: {
       type: DataTypes.UUIDV4,
       allowNull: false,

@@ -1,4 +1,4 @@
-const tableName = 'requests';
+const tableName = 'resources';
 
 exports.up = function(knex) {
 
