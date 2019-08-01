@@ -5,11 +5,6 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const uuidv5 = require('uuid/v5');
 
-router.get('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  const users = await models.user.findAll();
-  return res.send(users);
-});
-
 router.post('/', async (req, res) => {
 
   const { name, email, password } = req.body;
@@ -53,18 +48,6 @@ router.patch('/:user_id', passport.authenticate('jwt', { session: false }), asyn
   return res.send(user);
 });
 
-router.get('/:user_id/teams', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  // TODO improve authorization control
-  const userId = (req.params.user_id === 'me') ? req.user.id : req.params.user_id;
-  const user = await models.user.findByPk(userId, { include: ['teams'] });
-  const teams = user.get('teams');
-  return res.send(teams);
-});
-
-router.post('/:user_id/password-reset', async (req, res) => {
-  return res.send('TODO');
-});
-
 router.delete('/:user_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
   const queryParamUserId = req.params.user_id;
   if (queryParamUserId !== 'me' && queryParamUserId !== req.user.id.toString()) {
@@ -80,6 +63,14 @@ router.delete('/:user_id', passport.authenticate('jwt', { session: false }), asy
   await user.save();
 
   return res.redirect('/');
+});
+
+router.get('/:user_id/teams', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  // TODO improve authorization control
+  const userId = (req.params.user_id === 'me') ? req.user.id : req.params.user_id;
+  const user = await models.user.findByPk(userId, { include: ['teams'] });
+  const teams = user.get('teams');
+  return res.send(teams);
 });
 
 router.post('/account-validation', async (req, res) => {
@@ -114,6 +105,10 @@ router.post('/account-validation', async (req, res) => {
   await accountValidationToken.save();
 
   return res.send();
+});
+
+router.post('/:user_id/password-reset', async (req, res) => {
+  return res.send('TODO');
 });
 
 module.exports = router;

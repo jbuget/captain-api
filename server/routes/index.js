@@ -3,9 +3,13 @@ const router = express.Router();
 const models = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const pack = require('../package');
 
 router.get('/', (req, res) => {
-  res.send('It works!');
+  res.send({
+    name: pack.name,
+    version: pack.version,
+  });
 });
 
 router.get('/token', async (req, res) => {
@@ -47,14 +51,6 @@ router.get('/token', async (req, res) => {
     success: true,
     access_token: accessToken
   });
-});
-
-router.post('/password-reset', async (req, res) => {
-  return res.send('TODO');
-});
-
-router.post('/password-update', async (req, res) => {
-  return res.send('TODO');
 });
 
 module.exports = router;
