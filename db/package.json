@@ -1,5 +1,5 @@
 {
-  "name": "granny-db",
+  "name": "@captain-api/db",
   "version": "1.0.0",
   "description": "Granny DB manager",
   "main": "index.js",
