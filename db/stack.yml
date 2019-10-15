@@ -1,0 +1,19 @@
+# Use postgres/example user/password credentials
+version: '3'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: captain-api
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
