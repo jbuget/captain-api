@@ -25,6 +25,42 @@ router.post('/', async (req, res) => {
   return res.send(user);
 });
 
+router.post('/:user_id/activation', async (req, res) => {
+
+  const userId = req.params.user_id;
+
+  const { uuid } = req.body;
+
+  const accountValidationToken = await models.accountValidationToken.findOne({ where: { user_id: userId, uuid } });
+
+  if (!accountValidationToken) {
+    return res.status(400).send('Invalid account validation token');
+  }
+
+  if (accountValidationToken.used) {
+    return res.status(400).send('Token already used');
+  }
+
+  const user = await models.user.findByPk(userId);
+  if (!user) {
+    return res.status(400).send('User not found');
+  }
+
+  if (user.status !== 'CREATED') {
+    return res.status(400).send('Account already validated');
+  }
+
+  user.status = 'VALIDATED';
+  user.updatedAt = Date.now();
+  await user.save();
+
+  accountValidationToken.used = true;
+  accountValidationToken.updatedAt = Date.now();
+  await accountValidationToken.save();
+
+  return res.send();
+});
+
 router.get('/:user_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
   const queryParamUserId = req.params.user_id;
   if (queryParamUserId !== 'me' && queryParamUserId !== req.user.id.toString()) {
@@ -59,6 +95,7 @@ router.delete('/:user_id', passport.authenticate('jwt', { session: false }), asy
   user.email = `email_${user.id}`;
   user.password = `password_${user.id}`;
   user.status = 'DELETED';
+  user.deletedAt = Date.now();
 
   await user.save();
 
@@ -71,40 +108,6 @@ router.get('/:user_id/teams', passport.authenticate('jwt', { session: false }), 
   const user = await models.user.findByPk(userId, { include: ['teams'] });
   const teams = user.get('teams');
   return res.send(teams);
-});
-
-router.post('/account-validation', async (req, res) => {
-
-  const { userId, uuid } = req.body;
-
-  const accountValidationToken = await models.accountValidationToken.findOne({ where: { user_id: userId, uuid } });
-
-  if (!accountValidationToken) {
-    return res.status(400).send('Invalid account validation token');
-  }
-
-  if (accountValidationToken.used) {
-    return res.status(400).send('Token already used');
-  }
-
-  const user = await models.user.findByPk(userId);
-  if (!user) {
-    return res.status(400).send('User not found');
-  }
-
-  if (user.status !== 'CREATED') {
-    return res.status(400).send('Account already validated');
-  }
-
-  user.status = 'VALIDATED';
-  user.updatedAt = Date.now();
-  await user.save();
-
-  accountValidationToken.used = true;
-  accountValidationToken.updatedAt = Date.now();
-  await accountValidationToken.save();
-
-  return res.send();
 });
 
 router.post('/:user_id/password-reset', async (req, res) => {
