@@ -7,7 +7,7 @@ exports.seed = function(knex) {
         {
           // id: 1,
           name: 'Alice Johnson',
-          email: 'alice@granny.js',
+          email: 'alice@captain.api',
           password: '$2b$10$DSL7yjxaomO9o/oCovP0/OdB9wKzNCPVPjroP3F.H/cwDOjktDmWK',
           status: 'VALIDATED',
           updated_at: knex.fn.now(),
@@ -15,7 +15,7 @@ exports.seed = function(knex) {
         {
           // id: 2,
           name: 'Bob Mayweather',
-          email: 'bob@granny.js',
+          email: 'bob@captain.api',
           password: '$2b$10$TnN1dPAAb9vlO7NhB5KOgun6CsxcsxszKhPvGpWpzaSuZngEagnoS',
           status: 'VALIDATED',
           updated_at: knex.fn.now(),
@@ -23,7 +23,7 @@ exports.seed = function(knex) {
         {
           // id: 3,
           name: 'Carl Smith',
-          email: 'carl@granny.js',
+          email: 'carl@captain.api',
           password: '$2b$10$DSL7yjxaomO9o/oCovP0/OdB9wKzNCPVPjroP3F.H/cwDOjktDmWK',
           status: 'VALIDATED',
           updated_at: knex.fn.now(),

@@ -18,7 +18,7 @@ if (config.use_env_variable) {
 */
 
 
-const sequelize = new Sequelize('postgres://postgres:example@localhost/granny');
+const sequelize = new Sequelize('postgres://postgres:example@localhost/captain-api');
 
 sequelize
   .authenticate()

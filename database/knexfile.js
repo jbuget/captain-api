@@ -8,7 +8,7 @@ module.exports = {
       host : 'localhost',
       user: 'postgres',
       password: 'example',
-      database: 'granny',
+      database: 'captain-api',
     },
     pool: {
       min: 2,

@@ -4,8 +4,8 @@
 
 ```
 docker swarm init # (if not already done)
-docker stack deploy -c database/stack.yml granny
-docker stack rm granny && npm run db:init
+docker stack deploy -c database/stack.yml captain-api
+docker stack rm captain-api
 ```
 
 Wait. Browse http://localhost:8080.

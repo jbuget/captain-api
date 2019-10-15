@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-docker stack rm granny
+docker stack rm captain-api
 docker stack deploy granny -c stack.yml
