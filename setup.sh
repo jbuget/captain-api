@@ -38,3 +38,13 @@ npm install --no-optionnal
 cd ..
 
 echo 'API configured'
+
+# Web client
+
+echo 'Setup Web client'
+
+cd web
+npm install --no-optionnal
+cd ..
+
+echo 'Web client configured'
